@@ -11,3 +11,5 @@
     * ###### [참고 사이트](https://velog.io/@velopert/Redux-3-리덕스를-리액트와-함께-사용하기-nvjltahf5e)
 
 PPT 폴더는 js 및 React의 기본 문법을 정리한 것입니다.
+
+[웹 구경하기](https://cocky-montalcini-1434be.netlify.com)
