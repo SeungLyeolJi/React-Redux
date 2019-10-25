@@ -6,12 +6,11 @@ import Loading from "../components/Loading";
 import { connect } from 'react-redux';
 
 class ListContainer extends React.Component{
-    //스크롤 해야지 변경된 id가 적
     state = {
         isLoading : true,
         page : 1,
         content : [],
-        first : true,
+        isChange : false,
     };
 
     getMoviesList = async(page) => {
@@ -49,14 +48,12 @@ class ListContainer extends React.Component{
         this.setState({isLoading : false, content});
     }
 
-    UNSAFE_componentWillReceiveProps(){
-        this.setState({first : true});
-    }
-
-    componentDidUpdate(){
-        if(this.state.first){
-            this.setState({first : false});
-            this.setContent();
+    //componentwillreceiveprops 대신에 사용
+    static getDerivedStateFromProps(nextProps, prevState) {
+        if(nextProps.genreId !== null && prevState.isChange !== true){
+           return ({isChange : true})
+        }else if(nextProps.genreId !== null && prevState.isChange !== false){
+            return ({isChange : false})
         }
     }
 
@@ -91,7 +88,12 @@ class ListContainer extends React.Component{
     };
 
     render(){
+        console.log("redenr 실행");
+        if(this.state.isChange){
+            this.setContent();
+        }
         const {isLoading, content} = this.state;
+        
         return (
             <>
                 {
