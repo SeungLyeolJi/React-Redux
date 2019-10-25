@@ -38,13 +38,10 @@ const GenreListContainer = ({ match, history, modeChange}) => {
     );
 };
 
-const mapStateToProps = ({genre}) => ({
-    gerneId : genre.id,
-});
 const mapDispatchToProps = dispatch => bindActionCreators({modeChange}, dispatch);
 
 export default connect(
-    mapStateToProps,
+    null,
     mapDispatchToProps,
 )(GenreListContainer);
 
