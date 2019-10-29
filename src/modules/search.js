@@ -15,7 +15,7 @@ const initialState = {
 export default handleActions({
     [KEYWORD_CHANGE] : (state, action) => ({
         ...state,
-        page : action.payload
+        keyword : action.payload
     }),
     [PAGE_CHANGE] : (state, action) => ({
         ...state,

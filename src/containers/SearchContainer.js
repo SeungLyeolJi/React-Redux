@@ -15,18 +15,25 @@ const SearchContainer = ({Pkeyword, Ppage, pageChange, keywordChange}) => {
     const [prevKeyword, setPrevKeyword] = useState(keyword);
 
     useEffect(()=>{
-        console.log("스토어 페이지 "+Ppage);
-        console.log("스토어 키워드 "+Pkeyword);
-    },[keyword]);
-
+        if( keyword !== "" ) {
+            console.log("store page : " + Ppage + " state page : " + page);
+            console.log("store keyword : " + Pkeyword + " state keyword : " + keyword);
+            if(Ppage !== page){
+                console.log("페이지 변경 : ",Ppage,page);
+                pageChange(page);
+            }
+            else{
+                keywordChange(prevKeyword);
+            }
+            handleContent(page);
+        }
+    },[prevKeyword, page]);
 
     const onSubmit = e => {
         e.preventDefault();
         if( keyword !== "" ){
             handleContent(page);
             setPrevKeyword(keyword);
-            // pageChange(page);
-            // keywordChange(keyword);
         }
     };
 
@@ -73,7 +80,6 @@ const SearchContainer = ({Pkeyword, Ppage, pageChange, keywordChange}) => {
         }
     }
     const clickPage = e=>{
-        console.log("클릭");
         setPage(parseInt(e.target.innerText));
         handleContent(parseInt(e.target.innerText));
     }
