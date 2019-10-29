@@ -57,14 +57,14 @@ const MovieList = styled.li`
     }
 `;
 
-const Item = ({list}) =>{
+const Item = ({list, clickHandler}) =>{
     return(
         <>
             {   
                 list !== null ?
                 list.map((item)=>{    
                     return (
-                        <MovieList key={item.id}>
+                        <MovieList key={item.id} onClick={clickHandler}>
                             <Link to={`/detail/${item.id}`}>
                                 <div className="movieBox">
                                     { item.poster_path !== null ? <img src={`https://image.tmdb.org/t/p/w500${item.poster_path}`} alt={item.title}

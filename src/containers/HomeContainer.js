@@ -1,13 +1,21 @@
-import React from 'react';
-import {modeChange} from "../modules/list";
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import ListContainer from "../containers/ListContainer"
+import React,{useEffect} from 'react';
+import {modeChange, isScrollChange} from "../modules/list";
+import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
+import ListContainer from "../containers/ListContainer";
 
-const HomeContainer=({modeChange})=>{
-    modeChange("nowPlaying");
-    window.scrollTo(0,0);   
-        return(
+const HomeContainer = ({modeChange, isScrollChange, mode}) => {
+    useEffect(()=>{
+        if (mode !== "nowPlaying") {
+            modeChange("nowPlaying");
+            isScrollChange(false);
+            window.scrollTo(0, 0);
+        } else {
+            isScrollChange(true);
+        }
+    },[]);
+
+    return (
         <>
             <div className="descriptionLogo">
                 상영작
@@ -16,10 +24,14 @@ const HomeContainer=({modeChange})=>{
         </>
     )
 }
-const mapDispatchToProps = dispatch => bindActionCreators({modeChange}, dispatch);
 
-//mapStateToProps 안 쓸 때는 null 해야 경고창 안뜸
+
+const mapStateToProps = ({list}) => ({
+    mode: list.mode,
+});
+const mapDispatchToProps = dispatch => bindActionCreators({modeChange, isScrollChange}, dispatch);
+
 export default connect(
-    null,
+    mapStateToProps,
     mapDispatchToProps,
 )(HomeContainer);

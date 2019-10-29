@@ -110,6 +110,15 @@ const SearchLogo = styled.div`
     margin-bottom: 15px;
 `;
 
+const SearchWrapper = styled.div`
+    .errorLogo, .notFound{
+        text-align :center;
+        margin-top: 30px;
+        font-size : 18px;
+     }
+       
+`;
+
 const Search = ({keyword, result, error, isLoading, onSubmit, onChange, nextPage, prevPage, clickPage, currPage, maxPage, firstPage, lastPage, prevKeyword}) =>{
     const getPagiNation=()=>{
         let pagiNation = [];
@@ -128,7 +137,7 @@ const Search = ({keyword, result, error, isLoading, onSubmit, onChange, nextPage
     }
 
     return(
-        <>
+        <SearchWrapper>
             <SearchBox>
                 <form>
                     <div className="SearchInputBox">
@@ -139,7 +148,7 @@ const Search = ({keyword, result, error, isLoading, onSubmit, onChange, nextPage
             </SearchBox>
             {isLoading === true ? 
             <Loading/>  
-                : result !== null
+                : result !== null && result.length !== 0
                 ? 
                 <>
                     <SearchLogo>
@@ -168,12 +177,17 @@ const Search = ({keyword, result, error, isLoading, onSubmit, onChange, nextPage
                         </ul>
                     </PagiNation>
                 </>
-                    : 
-                <div className="errorLogo">
-                    {error}
-                </div>
+                    :
+                    result !== null && result.length === 0 ?
+                        <div className="notFound">
+                            {prevKeyword === "" ? "값을 입력하세요" : "'"+prevKeyword+"'을 찾을 수 없습니다"}
+                        </div>
+                        :
+                        <div className="errorLogo">
+                            {error}
+                        </div>
             }
-        </>
+        </SearchWrapper>
     )
 }
 

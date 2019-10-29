@@ -1,12 +1,19 @@
-import React from 'react';
-import {modeChange} from "../modules/list";
+import React, {useEffect} from 'react';
+import {isScrollChange, modeChange} from "../modules/list";
 import { connect } from 'react-redux';
 import ListContainer from "../containers/ListContainer"
 import { bindActionCreators } from 'redux';
 
-const PopularContainer = ({modeChange})=>{
-    modeChange("topRated");
-    window.scrollTo(0,0);
+const PopularContainer = ({modeChange, isScrollChange, mode})=>{
+    useEffect(() => {
+        if (mode !== "topRated"){
+            modeChange("topRated");
+            isScrollChange(false);
+            window.scrollTo(0, 0);
+        } else {
+            isScrollChange(true);
+        }
+    }, []);
     return(
         <>
             <div className="descriptionLogo">
@@ -16,10 +23,12 @@ const PopularContainer = ({modeChange})=>{
         </>
     )
 }
-
-const mapDispatchToProps = dispatch => bindActionCreators({modeChange}, dispatch);
+const mapStateToProps = ({list}) => ({
+    mode: list.mode,
+});
+const mapDispatchToProps = dispatch => bindActionCreators({modeChange, isScrollChange}, dispatch);
 
 export default connect(
-    null,
+    mapStateToProps,
     mapDispatchToProps,
 )(PopularContainer);

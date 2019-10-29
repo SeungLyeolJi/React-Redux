@@ -4,6 +4,8 @@ import Item from "../components/Item";
 import List from "../components/List";
 import Loading from "../components/Loading";
 import { connect } from 'react-redux';
+import {modeChange, pageChange, scrollyChange, isScrollChange} from "../modules/list";
+import {bindActionCreators} from "redux";
 
 class ListContainer extends React.Component{
     state = {
@@ -11,6 +13,8 @@ class ListContainer extends React.Component{
         page : 1,
         content : [],
         isChange : false,
+        scrollY : 0,
+        isScroll : false,
     };
 
     getMoviesList = async(page) => {
@@ -42,14 +46,33 @@ class ListContainer extends React.Component{
 
     setContent = async()=>{
         let content = [];
-        for(let re = 1; re <= this.state.page ; ++re){
-            content.push(<Item key={re} list={await this.getMoviesList(re)}></Item>);     
+        let re =1
+        for( ; re <= this.state.page ; ++re){
+            content.push(<Item key={re} list={await (this.getMoviesList(re))} clickHandler={this.clickHandler}></Item>);
         }
         this.setState({isLoading : false, content});
     }
 
+    setting = async() =>{
+        await this.setContent();
+        if(  this.state.isScroll === true ){
+            window.scrollTo(0, this.state.scrollY)
+            this.setState({isScroll : false});
+        }
+    }
+
+    clickHandler = () =>{
+        const props = this.props;
+        props.scrollyChange(window.scrollY);
+        props.pageChange(this.state.page);
+    }
+
     //componentwillreceiveprops 대신에 사용
     static getDerivedStateFromProps(nextProps, prevState) {
+        if(nextProps.isScroll){
+            nextProps.isScrollChange(false);
+            return ({page : nextProps.page, scrollY: nextProps.scrolly, isScroll : true});
+        }
         if(nextProps.genreId !== null && prevState.isChange !== true){
            return ({isChange : true})
         }else if(nextProps.genreId !== null && prevState.isChange !== false){
@@ -57,11 +80,11 @@ class ListContainer extends React.Component{
         }
     }
 
-    componentDidMount(){      
-        this.setContent();
+    componentDidMount(){
+        this.setting();
         window.addEventListener("scroll", this.handleScroll);
-    }   
-    
+    }
+
     componentWillUnmount() {
         window.removeEventListener("scroll", this.handleScroll);
     }
@@ -75,9 +98,9 @@ class ListContainer extends React.Component{
         if (scrollHeight - innerHeight - scrollTop < 1) {
             const notice = document.getElementById("notice");
             if(notice !== null){
-                document.getElementById("notice").style.display = "block";
+                notice.style.display = "block";
                 setTimeout(()=>{
-                    document.getElementById("notice").style.display = "none";
+                    notice.style.display = "none";
                 },800);
                 this.setState({
                     page : this.state.page+1
@@ -88,12 +111,12 @@ class ListContainer extends React.Component{
     };
 
     render(){
-        console.log("redenr 실행");
         if(this.state.isChange){
             this.setContent();
         }
         const {isLoading, content} = this.state;
-        
+
+
         return (
             <>
                 {
@@ -108,10 +131,18 @@ class ListContainer extends React.Component{
 }
 
 const mapStateToProps = ({list}) => ({
-    mode : list.mode
+    mode : list.mode,
+    page : list.page,
+    scrolly : list.scrolly,
+    isScroll : list.isScroll,
 });
+
+const mapDispatchToProps = dispatch => bindActionCreators({
+    modeChange, pageChange, scrollyChange, isScrollChange,
+}, dispatch);
 
 export default connect(
     mapStateToProps,
+    mapDispatchToProps,
 )(ListContainer);
 
