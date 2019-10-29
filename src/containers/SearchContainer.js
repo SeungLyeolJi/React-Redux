@@ -16,10 +16,7 @@ const SearchContainer = ({Pkeyword, Ppage, pageChange, keywordChange}) => {
 
     useEffect(()=>{
         if( keyword !== "" ) {
-            console.log("store page : " + Ppage + " state page : " + page);
-            console.log("store keyword : " + Pkeyword + " state keyword : " + keyword);
             if(Ppage !== page){
-                console.log("페이지 변경 : ",Ppage,page);
                 pageChange(page);
             }
             else{
