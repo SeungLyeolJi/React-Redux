@@ -120,9 +120,9 @@ class ListContainer extends React.Component{
         return (
             <>
                 {
-                    isLoading === true ? 
-                    <Loading/> 
-                    : 
+                    isLoading === true ?
+                    <Loading/>
+                    :
                     <List content={content}/>
                 }
             </>

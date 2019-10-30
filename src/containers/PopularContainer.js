@@ -1,34 +1,30 @@
-import React, {useEffect} from 'react';
-import {isScrollChange, modeChange} from "../modules/list";
-import { connect } from 'react-redux';
+import React from 'react';
 import ListContainer from "../containers/ListContainer"
-import { bindActionCreators } from 'redux';
+import {isScrollChange, modeChange} from "../modules/list";
+import {connect} from 'react-redux';
+import withModeChange from "../assets/withModeChange";
+import {bindActionCreators} from "redux";
 
-const PopularContainer = ({modeChange, isScrollChange, mode})=>{
-    useEffect(() => {
-        if (mode !== "topRated"){
-            modeChange("topRated");
-            isScrollChange(false);
-            window.scrollTo(0, 0);
-        } else {
-            isScrollChange(true);
-        }
-    }, []);
-    return(
+const PopularContainer = () => {
+    return (
         <>
             <div className="descriptionLogo">
                 명작
             </div>
-            <ListContainer/>                        
+            <ListContainer/>
         </>
     )
 }
+
 const mapStateToProps = ({list}) => ({
     mode: list.mode,
+    newMode: "topRated",
 });
-const mapDispatchToProps = dispatch => bindActionCreators({modeChange, isScrollChange}, dispatch);
+const mapDispatchToProps = dispatch => bindActionCreators(
+    {modeChange, isScrollChange}, dispatch
+);
 
 export default connect(
     mapStateToProps,
     mapDispatchToProps,
-)(PopularContainer);
+)(withModeChange(PopularContainer));

@@ -3,18 +3,9 @@ import {modeChange, isScrollChange} from "../modules/list";
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import ListContainer from "../containers/ListContainer";
+import withModeChange from "../assets/withModeChange";
 
-const HomeContainer = ({modeChange, isScrollChange, mode}) => {
-    useEffect(()=>{
-        if (mode !== "nowPlaying") {
-            modeChange("nowPlaying");
-            isScrollChange(false);
-            window.scrollTo(0, 0);
-        } else {
-            isScrollChange(true);
-        }
-    },[]);
-
+const HomeContainer = () => {
     return (
         <>
             <div className="descriptionLogo">
@@ -25,13 +16,15 @@ const HomeContainer = ({modeChange, isScrollChange, mode}) => {
     )
 }
 
-
 const mapStateToProps = ({list}) => ({
     mode: list.mode,
+    newMode: "nowPlaying",
 });
-const mapDispatchToProps = dispatch => bindActionCreators({modeChange, isScrollChange}, dispatch);
+const mapDispatchToProps = dispatch => bindActionCreators(
+    {modeChange, isScrollChange}, dispatch
+);
 
 export default connect(
     mapStateToProps,
     mapDispatchToProps,
-)(HomeContainer);
+)(withModeChange(HomeContainer));

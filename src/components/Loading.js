@@ -5,11 +5,12 @@ import loadingImg from "../assets/img/loading.gif";
 const LoadingBox = styled.div`
     position: absolute;
     width: 100%;
-    height: 100%;
     z-index: 300;
     .loadingImg {
-        margin: 40px auto;
+          margin: 80px auto;
         display: block;
+        width: 130px;
+        height: 130px;
     }
 `;
 
