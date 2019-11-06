@@ -1,94 +1,56 @@
-import React from 'react';
-import { Link } from "react-router-dom";
+import React, {useState, useEffect} from 'react';
+import {Link} from "react-router-dom";
 import styled from "styled-components";
 import searchIcon from "../assets/img/search.png";
 import Genres from "../components/Genres";
 import menu from "../assets/img/menu.png";
+import {useMobile} from "../hooks";
 
 const HeaderWrapper = styled.div`
-    top: 0px;
-    z-index: 100;
-    width: 100%;
-    background: rgb(20, 20, 20);
-    color: white;
-    z-index: 200;
-    position: fixed;
+    top: 0px;z-index: 100;width: 100%;background: rgb(20, 20, 20);color: white;z-index: 200;position: fixed;
 `;
 
 const HeaderBox = styled.div`
-    width: 80%;
-    margin: 0 auto;
-    height: 70px;
-    line-height: 70px;
-    .LinkList>li{
-        cursor: pointer;
-        padding: 0px 20px;
-        float: left;
-        text-align: center;
-        line-height: inherit;
-        height: 50px;
-        @media (max-width : 599px){
-            display : none;
-        }
-    }
-    .LinkList>li : hover {
-        color : red;
-    }
-    .genres:hover {
-        color :red;
-    }
+    width: 87%;margin: 0 auto;height: 70px;line-height: 70px;
     .searchBox{
         float: right;
     }
-    .genres:hover .genreUl{
-        height : 170px;
-    }
     .menuBtn{
-        display : none;
-        @media (max-width : 599px){
-            display : block;
-            cursor: pointer;
-        }
-        .LinkList>li : hover {
+        background-image: none;
+        .LinkList>li :hover {
             color : red;
         }
         .genres:hover {
-            color :red;
+          color: red;
         }
-        width: 50px;
-        height: 50px;
-        position: absolute;
-        top: 10px;
-        background : url(${menu}) no-repeat center;
-        background-size: 50px 50px
+        @media (max-width : 768px){
+            position: absolute;background-image : url(${menu});background-size: 100% auto;display : block;cursor: pointer;width: 36px;height: 36px;top: 17px;
+             .LinkList{
+                position: absolute;top: 40px;display: none;
+             }
+        }
         .LinkList{
-            position: absolute;
-            top: 50px;
-            li{ 
-                background : rgb(20,20,20);
-                padding: 5px;
-                height: 35px;
-                width: 120px;
-                line-height: 35px;
-                font-size: 16px;
-                color: white;
-                .genreUl{
-                    left: 50px;
-                    height : 0px;
-                    width: 300px;
-                    top: 180px;
-                }
+            >li{ 
+                cursor: pointer;background : rgb(20,20,20);padding: 5px;height: 36px;width: 120px;line-height: 35px;font-size: 17px;color: white;text-align: center;float: left;top: 12px;position: relative;
             }
-            .genres:hover .genreUl{
-                height: 460px;
+            .on{
+              .genreUl{ 
+              display: inline-table;
             }
+          }
         }
     }
-    .menuBtn: hover .LinkList>li {
-        display : block;
-    }
-    .LinkList>li:hover{
-        display : block;
+    .open>.LinkList{
+      display: block;
+      position: fixed;
+      width: 100%;
+      left: 0;
+      top: 55px;
+      padding-bottom: 25px;
+      background: rgb(20,20,20);
+      li{
+         width: 100%;
+      }
     }
 `;
 
@@ -96,43 +58,70 @@ const Padding = styled.div`
     padding-bottom :70px;
 `;
 
-const SearchBtn = styled(Link)`
-    position: relative;
-    width:50px;height:50px;
-    background : url(${searchIcon}) no-repeat center;
-    background-size:100% auto;
-    display: block;
-    top : 10px;
+const SearchBox = styled.span`
+    float: right;position: relative;width:50px;height:50px;background-size:100% auto;display: block;top : 10px;background-image:url(${searchIcon});right: 20px;
+    a{
+      width:50px;height:50px;display: inherit;
+    }
+    @media (max-width : 768px){
+        width: 36px;height: 36px;top: 17px;
+        a{
+           width:42px;height:42px;margin-top: -3px;margin-left:-3px;
+        }
+    }
+    
 `;
 
-const Header = ({genreList}) =>{
-    return(
+const Header = ({genreList }) => {
+    const [gernesOpen, setGernesOpen] = useState(false);
+    const [mobileMenuOpen ,setMobileMenuOpen] = useState(false);
+    const [isMobile, setIsMobile] = useMobile(useMobile());
+
+    useEffect(()=>{
+        console.log(isMobile);
+        if(isMobile){
+
+        }else{
+            setMobileMenuOpen(false);
+        }
+    },[useMobile()]);
+
+    const genresClickHandler = () =>{
+        if(gernesOpen){
+            setGernesOpen(false);
+        }else{
+            setGernesOpen(true);
+        }
+    }
+
+    const menuClickHandler = () =>{
+        console.log("실행");
+        if(mobileMenuOpen){
+            setMobileMenuOpen(false);
+        }else{
+            setMobileMenuOpen(true);
+        }
+    }
+
+    return (
         <>
             <HeaderWrapper>
                 <HeaderBox>
-                    <div className="menuBtn">
-                        <ul className="LinkList">    
-                            <li><Link to = "/home">홈</Link></li>
-                            <li><Link to = "/upcoming">개봉예정작</Link></li>
-                            <li><Link to = "/popular">명작</Link></li>
-                            <li className="genres">
+                    <div className={mobileMenuOpen ? "menuBtn open" : "menuBtn" }
+                    onClick={isMobile ? menuClickHandler: ()=>{}}>
+                        <ul className="LinkList">
+                            <li><Link to="/home">홈</Link></li>
+                            <li><Link to="/upcoming">개봉예정작</Link></li>
+                            <li><Link to="/popular">명작</Link></li>
+                            <li className={gernesOpen ? "genres on" :"genres"} onClick={genresClickHandler}>
                                 장르
                                 <Genres list={genreList}/>
                             </li>
                         </ul>
                     </ div>
-                    <ul className="LinkList">    
-                        <li><Link to = "/home">홈</Link></li>
-                        <li><Link to = "/upcoming">개봉예정작</Link></li>
-                        <li><Link to = "/popular">명작</Link></li>
-                        <li className="genres">
-                            장르
-                            <Genres list={genreList}/>
-                        </li>
-                    </ul>
-                    <span className="searchBox">
-                        <SearchBtn to="/search"></SearchBtn>
-                    </span>
+                    <SearchBox>
+                        <Link to="/search"></Link>
+                    </SearchBox>
                 </HeaderBox>
             </HeaderWrapper>
             <Padding/>

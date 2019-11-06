@@ -17,6 +17,7 @@ const globalStyles = createGlobalStyle`
     body {
         font-family: "맑은 고딕", 돋움, Dotum, "sans-serif";
         height:100%;
+        overflow-x:hidden;
     }
     .descriptionLogo {
         text-transform: capitalize;

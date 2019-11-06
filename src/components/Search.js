@@ -9,23 +9,28 @@ import firstArrow from "../assets/img/first-arrow.png";
 import lastArrow from "../assets/img/last-arrow.png";
 
 const SearchBox = styled.div`
-    display: flex;
-    width : 545px ;
+    width:100%;
+    max-width : 545px ;
     margin: 0 auto;
     padding: 40px;
+    box-sizing:border-box;
     form {
-        display: inline-flex;
+        position:relative;
+        display: inline-block;
+        width:100%;
     }
     .SearchInputBox{
         .SearchInput{
             padding-left : 20px;
-            width: 500px;
+            width: calc(100% - 45px);
             height: 45px;
+            padding-right:60px;
             box-sizing : border-box;
             font-size: 18px;
         }
     }
     .SearchSubmit{
+        position:absolute;right:0;top:0;
         width: 45px;
         height: 45px;
         background: #444;
@@ -38,10 +43,10 @@ const SearchBox = styled.div`
         }
     }
     @media (max-width : 599px){
-        width : 345px;
+        width : 100%;
         .SearchInputBox{
             .SearchInput{   
-                width : 300px;
+                width : 100%;
             }
         }
     }
