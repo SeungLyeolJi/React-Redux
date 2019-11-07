@@ -18,7 +18,6 @@ const SearchContainer = () => {
     },[prevKeyword, page]);
 
     const onSubmit = e => {
-        console.log("실행");
         e.preventDefault();
         if( keyword !== "" ){
             handleContent(1);
