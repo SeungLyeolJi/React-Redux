@@ -8,6 +8,7 @@ const GenresContainer=()=>{
    
     useEffect(()=>{
         getGenreList();
+        console.log("실행");
     },[]);
 
     const getGenreList = async() => {

@@ -6,27 +6,35 @@ import Loading from "./Loading";
 import { Link } from "react-router-dom";
 
 const Detail = ({result, isError, isLoading, history, keywordList}) =>{
-    // if(!isLoading){
-    //     console.log(result);
-    //     console.log(isError);
-    //     console.log(isLoading);
-    //     console.log(history);
-    //     console.log(keywordList);
-    // }
-
     const DetailBox = styled.div`
         width: 90%;
         margin:0 auto;
+        @media ( max-width: 768px ) {
+           .movieMainInfo{
+              width: 80%;
+              img{
+                  height: auto;
+                  width: 40%;
+              }
+              .movieMainInfoText{
+                  width: 55%;
+                  padding: 0px;
+                  margin: 0;
+                  margin-right: 5%;
+                  float: left;
+              }
+           } 
+        }
         .keywordList span:hover {
             background: cornflowerblue;
             color: white;
             border: 1px solid black;
         }
         .movieMainInfo {
+             @media ( max-width: 768px ) {
+              width: 100%;
+             }
             margin: 0 auto;width: 500px;margin-top: 30px;
-            @media ( max-width: 699px ) {
-                width: 400px;
-            }
         }
         .notFound {
             text-align: center;
@@ -41,17 +49,8 @@ const Detail = ({result, isError, isLoading, history, keywordList}) =>{
         }
         img {
             width: 200px;height: 300px;
-            @media ( max-width: 699px ) {
-                width: 150px;height: 225px;
-            }
         }
         .movieMainInfoText{
-            @media ( max-width: 699px ) {
-                font-size: 14px;
-                width: 210px;
-                height: 190px;
-                padding: 10px;
-            }
             width: 260px;
             float: right;
             padding: 20px;
@@ -78,11 +77,10 @@ const Detail = ({result, isError, isLoading, history, keywordList}) =>{
             }
         }
         .overview {
-            @media ( max-width: 699px ) {
-                width: 400px; 
-                font-size: 15px;
+            @media ( max-width: 768px ) {
+               width: 90%;
             }
-            width: 600px;
+            width: 700px;
             margin: 50px auto 70px;
             line-height: 30px;
             font-size: 16px;
@@ -90,10 +88,8 @@ const Detail = ({result, isError, isLoading, history, keywordList}) =>{
             font-weight: 600;
         }
         .tagline{
-            @media ( max-width: 699px ) {
-                width: 400px; 
-                font-size: 17px;
-                margin: 80px auto 60px;
+            @media ( max-width: 768px ) {
+                margin: 30px 0 0;
             }
             font-weight: 900;
             padding: 5px;
@@ -104,40 +100,28 @@ const Detail = ({result, isError, isLoading, history, keywordList}) =>{
             text-align: center;
             display: block;
             margin: 80px auto 60px;
-            max-width: 800px;
+            max-width: 750px;
             color: white;
         }
         .movieYoutubeBox{
             margin: 0 auto;
             width: 700px;
             height: auto;
+            @media ( max-width: 768px ) {
+                 width: 90%;
+            }
+            
             iframe {
-                width : 700px;
+                width : 100%;
                 height: 400px;
-            }
-            @media ( max-width: 699px ) {
-                width: 500px; 
-                height : auto;
-                font-size: 14px;
-                iframe {
-                    width : 500px;
-                    height: 300px;
-                }
-            }
-            @media ( max-width: 599px ) {
-                font-size: 12px;
-                width: 350px; 
-                height : auto;
-                iframe {
-                    width : 350px;
-                    height: 250px;
-                }
+                 @media ( max-width: 768px ) {
+                       height:  auto;
+                 }
             }
             .videoLabel {
-                @media ( max-width: 599px ) {
-                    font-size : 14px;
-                    width : 300px;
-                }
+                @media ( max-width: 768px ) {
+                    font-size: 2vw;
+                 }
                 top: -37px;
                 font-weight: 400;
                 background: #d91c0b;
@@ -149,14 +133,17 @@ const Detail = ({result, isError, isLoading, history, keywordList}) =>{
             }
         }
         .keywordList {
-            max-width: 1000px;
-            margin: 0 auto;
-            text-align: center;
-            padding: 40px 0px 60px;
+           @media ( max-width: 768px ) {
+            width: 90%;
+           }
+           max-width: 700px;
+           margin: 0 auto;
+           text-align: center;
+           padding: 40px 0px 20px;   
         }
         .keywordList span {
             text-align: center;
-            border: 1px solid;
+            border: 1px solid #3b6ed8;;
             border-radius: 20px;
             background: aliceblue;
             font-size: 15px;
@@ -164,6 +151,7 @@ const Detail = ({result, isError, isLoading, history, keywordList}) =>{
             line-height: 30px;
             display: inline-block;
             padding: 1px 10px;
+            margin: 4px 2px;
         }
         .keywordList p {
             font-weight: 600;

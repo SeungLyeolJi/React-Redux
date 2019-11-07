@@ -16,38 +16,69 @@ const HeaderBox = styled.div`
         float: right;
     }
     .menuBtn{
+        display: none;
         background-image: none;
-        .LinkList>li :hover {
-            color : red;
-        }
-        .genres:hover {
-          color: red;
-        }
         @media (max-width : 768px){
-            position: absolute;background-image : url(${menu});background-size: 100% auto;display : block;cursor: pointer;width: 36px;height: 36px;top: 17px;
+            display: block; position: absolute;background-image : url(${menu});background-size: 100% auto;display : block;cursor: pointer;width: 36px;height: 36px;top: 17px;background-color: black;border: none;
+        }
+        
+    }
+    .LinkList{
+        >li{  
+            cursor: pointer;background : rgb(20,20,20);padding: 5px;height: 36px;width: 120px;line-height: 35px;font-size: 17px;color: white;text-align: center;float: left;top: 12px;position: relative;
+            a,button{display:block;}
+            &.genres button{
+                  line-height: 36px;
+                  border: none;
+                  background-color: transparent;
+                  color: #fff;
+                  font-size: 17px; 
+                  width: 100%;
+                  &:hover{color:red;}
+            }
+            &:hover {
+                color : red;
+            }
+        }
+        .on{
+          .genreUl{ 
+          display: inline-table;
+        }
+      }
+    }
+         @media (max-width : 768px){
              .LinkList{
                 position: absolute;top: 40px;display: none;
              }
         }
-        .LinkList{
-            >li{ 
-                cursor: pointer;background : rgb(20,20,20);padding: 5px;height: 36px;width: 120px;line-height: 35px;font-size: 17px;color: white;text-align: center;float: left;top: 12px;position: relative;
-            }
-            .on{
-              .genreUl{ 
-              display: inline-table;
-            }
-          }
-        }
-    }
-    .open>.LinkList{
+    .LinkList.open{
       display: block;
       position: fixed;
       width: 100%;
       left: 0;
       top: 55px;
-      padding-bottom: 25px;
       background: rgb(20,20,20);
+      .on .genreUl{
+        padding-left: 0;
+        padding-right: 0;
+        top: 35px;
+        border : none;
+        box-shadow: none;
+        width: 100%;
+        li{
+          border: none;
+          margin-left: 0px;             
+          margin-right: 0px;
+          width: 50%;        
+           @media (max-width : 360px){
+             font-size: 4vw;
+             line-height: 6vw;
+           }
+          &:hover{
+            color: red;
+          }
+        }
+      }
       li{
          width: 100%;
       }
@@ -75,7 +106,7 @@ const SearchBox = styled.span`
 const Header = ({genreList }) => {
     const [gernesOpen, setGernesOpen] = useState(false);
     const [mobileMenuOpen ,setMobileMenuOpen] = useState(false);
-    const [isMobile, setIsMobile] = useMobile(useMobile());
+    const [isMobile] = useMobile(useMobile());
 
     useEffect(()=>{
         console.log(isMobile);
@@ -95,11 +126,12 @@ const Header = ({genreList }) => {
     }
 
     const menuClickHandler = () =>{
-        console.log("실행");
         if(mobileMenuOpen){
             setMobileMenuOpen(false);
+            console.log("실행");
         }else{
-            setMobileMenuOpen(true);
+            setMobileMenuOpen(true)
+            console.log("실행");
         }
     }
 
@@ -107,18 +139,16 @@ const Header = ({genreList }) => {
         <>
             <HeaderWrapper>
                 <HeaderBox>
-                    <div className={mobileMenuOpen ? "menuBtn open" : "menuBtn" }
-                    onClick={isMobile ? menuClickHandler: ()=>{}}>
-                        <ul className="LinkList">
-                            <li><Link to="/home">홈</Link></li>
-                            <li><Link to="/upcoming">개봉예정작</Link></li>
-                            <li><Link to="/popular">명작</Link></li>
-                            <li className={gernesOpen ? "genres on" :"genres"} onClick={genresClickHandler}>
-                                장르
-                                <Genres list={genreList}/>
-                            </li>
-                        </ul>
-                    </ div>
+                    <button className="menuBtn" onClick={isMobile ? menuClickHandler: ()=>{}}/>
+                    <ul className={`LinkList ${mobileMenuOpen ? "open" : ""}`}>
+                        <li><Link to="/home">홈</Link></li>
+                        <li><Link to="/upcoming">개봉예정작</Link></li>
+                        <li><Link to="/popular">명작</Link></li>
+                        <li className={gernesOpen ? "genres on" :"genres"} >
+                            <button onClick={genresClickHandler}>장르</button>
+                            <Genres list={genreList}/>
+                        </li>
+                    </ul>
                     <SearchBox>
                         <Link to="/search"></Link>
                     </SearchBox>
