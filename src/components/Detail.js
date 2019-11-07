@@ -120,6 +120,7 @@ const Detail = ({result, isError, isLoading, history, keywordList}) => {
         .tagline{
             @media ( max-width: 768px ) {
                 margin: 30px 0 0;
+                font-size: 3.8vw;
             }
             font-weight: 900;
             padding: 5px;

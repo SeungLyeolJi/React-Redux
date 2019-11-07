@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="3b368352-7f74-4031-b07a-84df1ce87e8d" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/src/containers/HeaderContainer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/containers/HeaderContainer.js" afterDir="false" />
-    </list>
+    <list default="true" id="3b368352-7f74-4031-b07a-84df1ce87e8d" name="Default" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -51,11 +49,11 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="HeaderContainer.js" pinned="false" current-in-tab="true">
+          <file leaf-file-name="HeaderContainer.js" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/containers/HeaderContainer.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="38">
-                  <caret line="4" column="23" selection-start-line="4" selection-start-column="23" selection-end-line="4" selection-end-column="23" />
+                <state relative-caret-position="380">
+                  <caret line="22" column="5" selection-start-line="22" selection-start-column="5" selection-end-line="22" selection-end-column="5" />
                 </state>
               </provider>
             </entry>
@@ -105,11 +103,11 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="Detail.js" pinned="false" current-in-tab="false">
+          <file leaf-file-name="Detail.js" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/components/Detail.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="445">
-                  <caret line="160" column="27" lean-forward="true" selection-start-line="160" selection-start-column="27" selection-end-line="160" selection-end-column="27" />
+                <state relative-caret-position="217">
+                  <caret line="122" column="33" selection-start-line="122" selection-start-column="33" selection-end-line="122" selection-end-column="33" />
                   <folding>
                     <element signature="e#0#26#0" expanded="true" />
                   </folding>
@@ -167,7 +165,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>origin</find>
       <find>genres</find>
       <find>.pagiNationUl</find>
       <find>mode</find>
@@ -197,6 +194,7 @@
       <find>overview</find>
       <find>search</find>
       <find>실행</find>
+      <find>margin: 30px</find>
     </findStrings>
     <replaceStrings>
       <replace>genreId</replace>
@@ -233,11 +231,11 @@
         <option value="$PROJECT_DIR$/src/components/Item.js" />
         <option value="$PROJECT_DIR$/src/components/Genres.js" />
         <option value="$PROJECT_DIR$/src/components/Header.js" />
-        <option value="$PROJECT_DIR$/src/components/Detail.js" />
         <option value="$PROJECT_DIR$/src/components/Search.js" />
         <option value="$PROJECT_DIR$/src/modules/index.js" />
         <option value="$PROJECT_DIR$/src/containers/SearchContainer.js" />
         <option value="$PROJECT_DIR$/src/containers/HeaderContainer.js" />
+        <option value="$PROJECT_DIR$/src/components/Detail.js" />
       </list>
     </option>
   </component>
@@ -374,12 +372,12 @@
       <workItem from="1573012956499" duration="7024000" />
       <workItem from="1573029677376" duration="3965000" />
       <workItem from="1573086432967" duration="5279000" />
-      <workItem from="1573091746189" duration="14975000" />
+      <workItem from="1573091746189" duration="15106000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="61794000" />
+    <option name="totallyTimeSpent" value="61925000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -400,8 +398,8 @@
       <window_info anchor="bottom" id="Version Control" order="12" weight="0.32570806" />
       <window_info anchor="bottom" id="Run" order="3" />
       <window_info id="npm" order="2" side_tool="true" />
-      <window_info anchor="bottom" id="Terminal" order="11" visible="true" weight="0.25770926" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.12543555" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="11" visible="true" weight="0.25770926" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.12543555" />
       <window_info anchor="bottom" id="Docker" order="8" show_stripe_button="false" />
       <window_info anchor="right" id="Database" order="3" />
       <window_info anchor="bottom" id="Find" order="2" />
@@ -786,16 +784,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/Detail.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="445">
-          <caret line="160" column="27" lean-forward="true" selection-start-line="160" selection-start-column="27" selection-end-line="160" selection-end-column="27" />
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/modules/list.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="361">
@@ -835,8 +823,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/containers/HeaderContainer.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="38">
-          <caret line="4" column="23" selection-start-line="4" selection-start-column="23" selection-end-line="4" selection-end-column="23" />
+        <state relative-caret-position="380">
+          <caret line="22" column="5" selection-start-line="22" selection-start-column="5" selection-end-line="22" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/Detail.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="217">
+          <caret line="122" column="33" selection-start-line="122" selection-start-column="33" selection-end-line="122" selection-end-column="33" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
