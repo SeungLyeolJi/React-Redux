@@ -133,7 +133,6 @@ const Header = ({genreList }) => {
     const [isMobile] = useMobile(useMobile());
 
     useEffect(()=>{
-        console.log(window.location.pathname);
         if(!isMobile){
             setMobileMenuOpen(false);
             if(mobileMenuOpen && gernesOpen) {
@@ -188,7 +187,7 @@ const Header = ({genreList }) => {
                         </li>
                     </ul>
                     <SearchBox>
-                        <Link to="/search"></Link>
+                        <Link to="/search" onClick={menuClose}></Link>
                     </SearchBox>
                 </HeaderBox>
             </HeaderWrapper>

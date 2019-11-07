@@ -54,7 +54,7 @@ const SearchBox = styled.div`
 
 const ListBox = styled.div`
     margin:0 auto;
-    width : 1310px
+    width : 1310px;
     @media ( max-width: 1309px ) {
         width: 1048px;
     }
@@ -67,10 +67,9 @@ const ListBox = styled.div`
     @media ( max-width: 523px ) {
         width: 90%;
     }
-}
 `;
 
-const PagiNation =styled.div`
+const PagiNation = styled.div`
     .circle {
         padding: 0px 5px;
         cursor: pointer;
@@ -122,6 +121,10 @@ const SearchLogo = styled.div`
     width: 300px;
     font-weight: 500;
     margin-bottom: 15px;
+     @media ( max-width: 768px ) {
+        display: block;
+        width: 100%;
+     }
 `;
 
 const SearchWrapper = styled.div`

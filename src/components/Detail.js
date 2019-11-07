@@ -103,6 +103,7 @@ const Detail = ({result, isError, isLoading, history, keywordList}) => {
         .overview {
             @media ( max-width: 768px ) {
                width: 90%;
+               margin: 50px auto 20px;
             }
             @media (max-width: 475px){
               font-size: 3.9vw;
@@ -119,9 +120,6 @@ const Detail = ({result, isError, isLoading, history, keywordList}) => {
         .tagline{
             @media ( max-width: 768px ) {
                 margin: 30px 0 0;
-            }
-            @media (max-width:  370px){
-             display: inline-table;
             }
             font-weight: 900;
             padding: 5px;

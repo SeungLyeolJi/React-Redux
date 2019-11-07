@@ -1,13 +1,10 @@
 import React, {useState, useEffect} from 'react';
 import Search from "../components/Search";
 import {moviesApi} from "../api";
-import { pageChange, keywordChange } from "../modules/search";
-import {bindActionCreators} from "redux";
-import {connect} from 'react-redux';
 
-const SearchContainer = ({Pkeyword, Ppage, pageChange, keywordChange}) => {
-    const [keyword, setKeyword] = useState(Pkeyword);
-    const [page, setPage] = useState(Ppage);
+const SearchContainer = () => {
+    const [keyword, setKeyword] = useState("");
+    const [page, setPage] = useState(1);
     const [result, setResult] = useState(null);
     const [error, setError] = useState(null);
     const [isLoading, setIsLoading] = useState(false);
@@ -16,21 +13,19 @@ const SearchContainer = ({Pkeyword, Ppage, pageChange, keywordChange}) => {
 
     useEffect(()=>{
         if( keyword !== "" ) {
-            if(Ppage !== page){
-                pageChange(page);
-            }
-            else{
-                keywordChange(prevKeyword);
-            }
             handleContent(page);
         }
     },[prevKeyword, page]);
 
     const onSubmit = e => {
+        console.log("실행");
         e.preventDefault();
         if( keyword !== "" ){
-            handleContent(page);
+            handleContent(1);
+            setPage(1);
             setPrevKeyword(keyword);
+        }else if( keyword === ""){
+            alert("검색어를 입력해주세요.");
         }
     };
 
@@ -103,12 +98,5 @@ const SearchContainer = ({Pkeyword, Ppage, pageChange, keywordChange}) => {
     );
 };
 
-const mapStateToProps = ({search}) => ({
-    Pkeyword : search.keyword,
-    Ppage : search.page,
-});
-const mapDispatchToProps = dispatch => bindActionCreators({pageChange, keywordChange}, dispatch);
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps,
-)(SearchContainer);
+
+export default SearchContainer;
