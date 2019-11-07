@@ -2,13 +2,14 @@ import React,{useState, useEffect} from "react";
 import {moviesApi} from "../api";
 import Header from "../components/Header";
 
-const GenresContainer=()=>{
+const GenresContainer=(props)=>{
     const [isLoading, setIsLoading] = useState(true);
     const [genreList, setGenreList] = useState([]);
-   
+
+    console.log(props);
     useEffect(()=>{
         getGenreList();
-        console.log("실행");
+
     },[]);
 
     const getGenreList = async() => {

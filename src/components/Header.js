@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react';
 import {Link} from "react-router-dom";
 import styled from "styled-components";
 import searchIcon from "../assets/img/search.png";
+import xIcon from  "../assets/img/x.png";
 import Genres from "../components/Genres";
 import menu from "../assets/img/menu.png";
 import {useMobile} from "../hooks";
@@ -24,6 +25,9 @@ const HeaderBox = styled.div`
         
     }
     .LinkList{
+       .xIcon{
+         display: none;
+       }
         >li{  
             cursor: pointer;background : rgb(20,20,20);padding: 5px;height: 36px;width: 120px;line-height: 35px;font-size: 17px;color: white;text-align: center;float: left;top: 12px;position: relative;
             a,button{display:block;}
@@ -57,6 +61,7 @@ const HeaderBox = styled.div`
       width: 100%;
       left: 0;
       top: 55px;
+      height: 100%;
       background: rgb(20,20,20);
       .on .genreUl{
         padding-left: 0;
@@ -81,6 +86,25 @@ const HeaderBox = styled.div`
       }
       li{
          width: 100%;
+      }
+      .xIcon{
+        background:url(${xIcon});        
+        width: 30px;
+        height: 30px;
+        background-size: 100% auto;
+        position: absolute;
+        z-index: 10;
+        top: 3%;
+        right: 10%;
+        border: none;
+        display: block;
+        cursor: pointer;
+      }
+      .xIcon:hover{
+        transition: 0.2s;
+        transform: translate(-1px,-1px);
+        width: 32px;
+        height: 32px;
       }
     }
 `;
@@ -109,11 +133,17 @@ const Header = ({genreList }) => {
     const [isMobile] = useMobile(useMobile());
 
     useEffect(()=>{
-        console.log(isMobile);
-        if(isMobile){
-
-        }else{
+        console.log(window.location.pathname);
+        if(!isMobile){
             setMobileMenuOpen(false);
+            if(mobileMenuOpen && gernesOpen) {
+                setGernesOpen(false);
+            }
+        }
+        if(isMobile){
+            if(!mobileMenuOpen && gernesOpen) {
+                setGernesOpen(false);
+            }
         }
     },[useMobile()]);
 
@@ -128,12 +158,19 @@ const Header = ({genreList }) => {
     const menuClickHandler = () =>{
         if(mobileMenuOpen){
             setMobileMenuOpen(false);
-            console.log("실행");
         }else{
-            setMobileMenuOpen(true)
-            console.log("실행");
+            setMobileMenuOpen(true);
         }
     }
+
+    const menuClose = () => {
+        if(mobileMenuOpen){
+            setMobileMenuOpen(false);
+        }
+        if(gernesOpen){
+            setGernesOpen(false);
+        }
+    };
 
     return (
         <>
@@ -141,12 +178,13 @@ const Header = ({genreList }) => {
                 <HeaderBox>
                     <button className="menuBtn" onClick={isMobile ? menuClickHandler: ()=>{}}/>
                     <ul className={`LinkList ${mobileMenuOpen ? "open" : ""}`}>
-                        <li><Link to="/home">홈</Link></li>
-                        <li><Link to="/upcoming">개봉예정작</Link></li>
-                        <li><Link to="/popular">명작</Link></li>
+                        <button className="xIcon" onClick={isMobile ? menuClickHandler: ()=>{}}></button>
+                        <li><Link to="/home" onClick={menuClose}>홈</Link></li>
+                        <li><Link to="/upcoming" onClick={menuClose}>개봉예정작</Link></li>
+                        <li><Link to="/popular" onClick={menuClose}>명작</Link></li>
                         <li className={gernesOpen ? "genres on" :"genres"} >
                             <button onClick={genresClickHandler}>장르</button>
-                            <Genres list={genreList}/>
+                            <Genres list={genreList} menuClose={menuClose}/>
                         </li>
                     </ul>
                     <SearchBox>

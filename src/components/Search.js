@@ -65,7 +65,7 @@ const ListBox = styled.div`
         width: 524px;
     }
     @media ( max-width: 523px ) {
-        width: 262px;
+        width: 90%;
     }
 }
 `;
@@ -90,7 +90,16 @@ const PagiNation =styled.div`
     .pagiNationUl {
         text-align: center;
         padding: 25px 0 30px;
-    
+        @media (max-width: 510px){
+            li{
+              font-size: 3.3vw;
+            }
+            img{
+              width: 15px;
+              height: 15px;
+            }
+        }
+    }
     .arrow{
         display: inline-block;
     }

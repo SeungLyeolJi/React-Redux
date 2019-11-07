@@ -17,7 +17,7 @@ const MovieListBox = styled.div`
             width: 524px;
         }
         @media ( max-width: 523px ) {
-            width: 262px;
+            width: 90%;
         }
     }
 `;

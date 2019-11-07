@@ -43,18 +43,46 @@ const MovieList = styled.li`
         -webkit-box-orient: vertical;
         -webkit-line-clamp: 3;
         word-spacing: 0.07em;
-        margin: 20px 30px 18px;
+        margin: 10px 20px;
         font-size : 12px;
     }
     .originalTitle {
+        display: block;
         margin-left : 18px;
         font-size: 14px;
+        margin-top: 7px;
     }
     .title {
-        line-height: 50px;
-        margin-left : 11px; 
+        display: block;
+        line-height: 16px;
+        margin-left: 11px;
         font-size: 16px;
+        margin-top: 20px;
     }
+    
+      @media ( max-width: 523px ) {
+         width: 50%;
+         .movieBox {
+            width: 100%;
+            height: auto;
+            .overView{
+              display: none;
+            }
+            .movieContent {
+                height: 120px;
+                width: 100%;
+            }
+            .originalTitle {
+                margin: 0;
+                text-align: center;
+            }
+            .title {
+                margin: 0;  
+                line-height: 30px;
+                text-align: center;
+          }
+         }
+     }
 `;
 
 const Item = ({list, clickHandler}) =>{
@@ -73,7 +101,6 @@ const Item = ({list, clickHandler}) =>{
                                         <span className="title">
                                             {item.title}
                                         </span>
-                                        <br></br>
                                         <span className="originalTitle">
                                             {item.original_title}
                                         </span>                         

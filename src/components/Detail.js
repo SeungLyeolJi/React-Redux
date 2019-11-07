@@ -3,9 +3,9 @@ import styled from "styled-components";
 import empty from "../assets/img/empty.png"
 import star from "../assets/img/star.png";
 import Loading from "./Loading";
-import { Link } from "react-router-dom";
+import {Link} from "react-router-dom";
 
-const Detail = ({result, isError, isLoading, history, keywordList}) =>{
+const Detail = ({result, isError, isLoading, history, keywordList}) => {
     const DetailBox = styled.div`
         width: 90%;
         margin:0 auto;
@@ -25,6 +25,22 @@ const Detail = ({result, isError, isLoading, history, keywordList}) =>{
               }
            } 
         }
+        @media (max-width:  370px){
+            .movieMainInfo{
+                img{
+                   width: 60%;
+                   margin: 0 auto;
+                   display: block;
+                }
+                .movieMainInfoText{
+                    margin-top: 18px;
+                    float: none;
+                    width: 100%;
+                    text-align: center;
+                    height: auto;
+                }
+            }
+        } 
         .keywordList span:hover {
             background: cornflowerblue;
             color: white;
@@ -58,6 +74,14 @@ const Detail = ({result, isError, isLoading, history, keywordList}) =>{
             margin-top: 20px;
             .genres span {
                 margin-left: 5px;
+                a{
+                    border-bottom: 1px solid #d91c0b;
+                    padding: 0 2px ;
+                }
+                a:hover{
+                   background: #d91c0b;
+                   color: white;                
+                } 
             }
             p.title {
                 font-size: larger;
@@ -80,6 +104,11 @@ const Detail = ({result, isError, isLoading, history, keywordList}) =>{
             @media ( max-width: 768px ) {
                width: 90%;
             }
+            @media (max-width: 475px){
+              font-size: 3.9vw;
+              line-height: 6vw;
+              font-weight: 600;
+            }
             width: 700px;
             margin: 50px auto 70px;
             line-height: 30px;
@@ -90,6 +119,9 @@ const Detail = ({result, isError, isLoading, history, keywordList}) =>{
         .tagline{
             @media ( max-width: 768px ) {
                 margin: 30px 0 0;
+            }
+            @media (max-width:  370px){
+             display: inline-table;
             }
             font-weight: 900;
             padding: 5px;
@@ -121,6 +153,12 @@ const Detail = ({result, isError, isLoading, history, keywordList}) =>{
             .videoLabel {
                 @media ( max-width: 768px ) {
                     font-size: 2vw;
+                 }
+                 @media (max-width: 370px){
+                    width: 100%;
+                    padding: 5px 0;
+                    line-height: 5vw;
+                    text-align: center;
                  }
                 top: -37px;
                 font-weight: 400;
@@ -171,105 +209,118 @@ const Detail = ({result, isError, isLoading, history, keywordList}) =>{
             margin-left:10px;color:#666;font-size:14px;
             span{color:#333;font-weight:bold;}
         }
+        @media (max-width:  370px){
+            display: block;
+            .star{
+                 display: block;
+                 margin: 0 auto;
+            }
+            .text{
+                 display: block;
+                 margin: 0 auto;
+            }
+        }
     `;
-    return(
+    return (
         <DetailBox>
             {
-                isLoading ? 
+                isLoading ?
                     (
-                        <Loading></Loading>                        
-                    ) 
+                        <Loading></Loading>
+                    )
                     :
                     (
-                        isError ? 
-                        (
-                            <div className="notFound">
-                                콘텐츠를 찾을 수 없습니다.
-                                <div className="img">
-                                    404 error
+                        isError ?
+                            (
+                                <div className="notFound">
+                                    콘텐츠를 찾을 수 없습니다.
+                                    <div className="img">
+                                        404 error
+                                    </div>
                                 </div>
-                            </div>
-                        )
-                        :
-                        (
-                            <div className="movieInfoBox">
-                                <div className="movieMainInfo">
-                                    {result.poster_path !== null ?
-                                    <img src={`https://image.tmdb.org/t/p/w200${result.poster_path}`}  alt={result.title} /> : <img src={empty} alt="empty"/>
-                                    }
-                                    <div className="movieMainInfoText">
-                                        <p className="title">
-                                            {result.title}   
-                                        </p>
-                                        <p className="originTitle">  
-                                            {
-                                                result.original_title
-                                            }
-                                        </p>
-                                        <Rank star={result.vote_average * 10}>
-                                            <div className="star">
-                                                <div className="per">{result.vote_average * 10}%</div>
-                                            </div>
-                                            <p className="text"><span>{result.vote_average}</span> / 10</p>
-                                        </Rank>
+                            )
+                            :
+                            (
+                                <div className="movieInfoBox">
+                                    <div className="movieMainInfo">
+                                        {result.poster_path !== null ?
+                                            <img src={`https://image.tmdb.org/t/p/w200${result.poster_path}`}
+                                                 alt={result.title}/> : <img src={empty} alt="empty"/>
+                                        }
+                                        <div className="movieMainInfoText">
+                                            <p className="title">
+                                                {result.title}
+                                            </p>
+                                            <p className="originTitle">
+                                                {
+                                                    result.original_title
+                                                }
+                                            </p>
+                                            <Rank star={result.vote_average * 10}>
+                                                <div className="star">
+                                                    <div className="per">{result.vote_average * 10}%</div>
+                                                </div>
+                                                <p className="text"><span>{result.vote_average}</span> / 10</p>
+                                            </Rank>
 
-                                        <p className="genres">
-                                            장르 : 
-                                            {
-                                                result.genres.map(genre => 
-                                                <span key={genre.id}>
+                                            <p className="genres">
+                                                장르 :
+                                                {
+                                                    result.genres.map(genre =>
+                                                        <span key={genre.id}>
                                                     <Link to={`/genreList/${genre.id}`}>
                                                         {genre.name}
                                                     </Link>
                                                 </span>)
+                                                }
+                                            </p>
+                                            <p>
+                                                나라 : {
+                                                result.production_countries[0] == null ? "알 수 없음" : result.production_countries[0].name
                                             }
-                                        </p>
-                                        <p>
-                                            나라 : {
-                                                result.production_countries[0] == null ? "알 수 없음" :result.production_countries[0].name
-                                            }
-                                        </p>
-                                        <p>
-                                            개봉일 : {result.release_date}
-                                        </p>
-                                        <p>
-                                            상영시간 : {result.runtime} 분
-                                        </p>
+                                            </p>
+                                            <p>
+                                                개봉일 : {result.release_date}
+                                            </p>
+                                            <p>
+                                                상영시간 : {result.runtime} 분
+                                            </p>
+                                        </div>
                                     </div>
-                                </div>
-                                {result.tagline === "" ?  <></> : <span className="tagline">{result.tagline}</span>}
-                                <div className="overview">
-                                    {result.overview}
-                                </div>
-                                <div className="movieYoutubeBox">
-                                    { 
-                                        result.videos.results.map(item => {
-                                                return(
-                                                    <div key={item.id}>
-                                                        <div className="videoLabel">{item.name}
+                                    {result.tagline === "" ? <></> : <span className="tagline">{result.tagline}</span>}
+                                    <div className="overview">
+                                        {result.overview}
+                                    </div>
+                                    <div className="movieYoutubeBox">
+                                        {
+                                            result.videos.results.map(item => {
+                                                    return (
+                                                        <div key={item.id}>
+                                                            <div className="videoLabel">{item.name}
+                                                            </div>
+                                                            <iframe src={`https://www.youtube.com/embed/${item.key}`}
+                                                                    title={item.name} key={item.id}></iframe>
                                                         </div>
-                                                        <iframe src={`https://www.youtube.com/embed/${item.key}`} title={item.name} key={item.id}></iframe>
-                                                    </div>
-                                                )
-                                            }
-                                        )
-                                    }
-                                </div>
-                                <div className="keywordList">
-                                    {keywordList.length !== 0 ? <p>관련 태그</p> : <></>}
-                                    { 
-                                        keywordList.map((item)=>{
-                                            return <Link to={`/keywordList/${item.id}`} key={item.id}>
+                                                    )
+                                                }
+                                            )
+                                        }
+                                    </div>
+                                    <div className="keywordList">
+                                        {keywordList.length !== 0 ? <p>관련 태그</p> : <></>}
+                                        {
+                                            keywordList.map((item) => {
+                                                return <Link to={`/keywordList/${item.id}`} key={item.id}>
                                                     <span>
                                                         {item.name}
                                                     </span>
                                                 </Link>
-                                        })
-                                    }
-                                </div>
+                                            })
+                                        }
+                                    </div>
 
-                            </div>
-                        )
+                                </div>
+                            )
                     )
             }
         </DetailBox>
