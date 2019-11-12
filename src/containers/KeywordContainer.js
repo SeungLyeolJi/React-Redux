@@ -13,11 +13,12 @@ const KeywordContainer = ({ match, history, keyword, keywordChange}) => {
 
     //여기서 스크롤 해도 List에서 setting으로 스크롤 내리는듯
     useEffect(()=>{
+        console.log(keyword,parsedId);
         if(keyword !== parsedId){
             keywordChange(parsedId);
             setBlockingScroll(true);
-            getkeyword();
         }
+        getkeyword();
     },[keywordName]);
 
     //useEffect에 아래 if문을 넣으면 history 및 parsedI가 없어서 종속성 문제 발생
@@ -52,7 +53,8 @@ const mapDispatchToProps = dispatch => bindActionCreators(
     {modeChange, isScrollChange, keywordChange}, dispatch
 );
 
-//store변수를 안 쓸경우 null 보내야지 경고창이 안뜸
+//withModeChange에 기본 적으로 보내야하는 props => mode, newMode modeChange, isScrollChange
+//withModeChange는 newMode로 기존 mode와 비교해 스크롤 및 스크롤 여부 결정
 export default connect(
     mapStateToProps,
     mapDispatchToProps,
