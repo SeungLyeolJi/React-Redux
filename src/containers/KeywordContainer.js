@@ -2,23 +2,23 @@ import React, {useState,useEffect } from 'react';
 import ListContainer from "./ListContainer";
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import {genreChange, isScrollChange, modeChange} from "../modules/list";
+import {keywordChange, isScrollChange, modeChange} from "../modules/list";
 import {moviesApi} from "../api";
 import withModeChange from "../assets/withModeChange";
 
-const KeywordContainer = ({ match, history}) => {
+const KeywordContainer = ({ match, history, keyword, keywordChange}) => {
     const parsedId = parseInt(match.params.id);
-    const [keyword,setKeyword] = useState(null);
-    const [keywordId, setKeywordId] = useState(null);
+    const [keywordName,setKeywordName] = useState(null);
+    const [blockingScroll, setBlockingScroll] = useState(false);
 
+    //여기서 스크롤 해도 List에서 setting으로 스크롤 내리는듯
     useEffect(()=>{
-        console.log("parsed ID : "+parsedId+ " keyword : "+keyword);
         if(keyword !== parsedId){
-            console.log("아이디가 다르다");
+            keywordChange(parsedId);
+            setBlockingScroll(true);
             getkeyword();
-            window.scrollTo(0,0);
         }
-    },[keyword]);
+    },[keywordName]);
 
     //useEffect에 아래 if문을 넣으면 history 및 parsedI가 없어서 종속성 문제 발생
     if( isNaN(parsedId)){
@@ -28,15 +28,16 @@ const KeywordContainer = ({ match, history}) => {
     const getkeyword = async() => {
         let tmp = await moviesApi.getKeyword(parsedId);
         tmp =  tmp.data.name;
-        setKeyword(tmp);
+        setKeywordName(tmp);
     };    
 
     return (
         <>
             <div className="descriptionLogo">
-                keyword : {keyword === null ? <></> : keyword }
+                keyword : {keywordName === null ? <></> : keywordName}
             </div>
             <ListContainer
+                blockingScroll = {blockingScroll ? blockingScroll : undefined }
                 keywordId={parsedId}
             />
         </>
@@ -44,10 +45,11 @@ const KeywordContainer = ({ match, history}) => {
 };
 const mapStateToProps = ({list}) => ({
     mode: list.mode,
-    newMode: "keywordListView",
+    keyword : list.keyword,
+    newMode : "keywordListView",
 });
 const mapDispatchToProps = dispatch => bindActionCreators(
-    {modeChange, isScrollChange, genreChange}, dispatch
+    {modeChange, isScrollChange, keywordChange}, dispatch
 );
 
 //store변수를 안 쓸경우 null 보내야지 경고창이 안뜸

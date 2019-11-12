@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import {isScrollChange, modeChange} from "../modules/list";
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';

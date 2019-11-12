@@ -9,13 +9,21 @@ import withModeChange from "../assets/withModeChange";
 const GenreListContainer = ({match, history, genre, genreChange}) => {
     const parsedId = parseInt(match.params.id);
     const [genreName, setGenreName] = useState(null);
+    const [blockingScroll, setBlockingScroll] = useState(false);
 
-    //genreListView
+    //여기서 스크롤 해도 List에서 setting으로 스크롤 내리는듯
     useEffect(() => {
+        let getGenre = async () => {
+            let genres = await moviesApi.genreList();
+            genres = genres.data.genres;
+            let tmp = genres.filter(item => item.id === parsedId)[0].name;
+            setGenreName(tmp);
+        };
+        getGenre();
         if (genre !== parsedId) {
-            getGenre();
             genreChange(parsedId);
-            window.scrollTo(0, 0);
+            window.scroll(0,0);
+            setBlockingScroll(true);
         }
     }, [parsedId])
 
@@ -24,20 +32,13 @@ const GenreListContainer = ({match, history, genre, genreChange}) => {
         return history.push("/");
     }
 
-    const getGenre = async () => {
-        let genres = await moviesApi.genreList();
-        genres = genres.data.genres;
-        let tmp = genres.filter(item => item.id === parsedId)[0].name;
-        setGenreName(tmp);
-    };
-
-
     return (
         <>
             <div className="descriptionLogo">
                 Genre : {genreName === null ? <></> : genreName}
             </div>
             <ListContainer
+                blockingScroll = {blockingScroll ? blockingScroll : undefined }
                 genreId={parsedId}
             />
         </>

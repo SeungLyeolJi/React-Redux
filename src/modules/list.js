@@ -5,18 +5,21 @@ const PAGE_CHANGE = "list/PAGE";//페이지 변경
 const SCROLLY_CHANGE = "list/SCROLLY";//스크롤Y 변경
 const IS_SCROLL_CHANGE = "list/ISSCROLL";
 const GENRE_CHANGE = "list/GENRE";
+const KEYWORD_CHANGE = "list/KEYWORD"
 
 export const modeChange = createAction(MODE_CHANGE, mode => mode);
 export const pageChange = createAction(PAGE_CHANGE, page => page);
 export const scrollyChange = createAction(SCROLLY_CHANGE, scrolly => scrolly);
 export const isScrollChange = createAction(IS_SCROLL_CHANGE, isScroll => isScroll);
 export const genreChange = createAction(GENRE_CHANGE, genre => genre);
+export const keywordChange = createAction(KEYWORD_CHANGE, keyword => keyword)
 
 //초기화
 const initialState = {
     mode : "nowPlaying",
     page : 1,
     genre : 0,
+    keyword : 0,
     scrolly : 0,
     isScroll : false,
 };
@@ -42,5 +45,9 @@ export default handleActions({
     ,[GENRE_CHANGE] : (state, action) => ({
         ...state,
         genre : action.payload
+    })
+    ,[KEYWORD_CHANGE] : (state, action) => ({
+        ...state,
+        keyword : action.payload
     })
 }, initialState);

@@ -56,7 +56,9 @@ class ListContainer extends React.Component{
     setting = async() =>{
         await this.setContent();
         if(  this.state.isScroll === true ){
-            window.scrollTo(0, this.state.scrollY)
+            if(this.props.blockingScroll === undefined){
+                window.scrollTo(0, this.state.scrollY);
+            }
             this.setState({isScroll : false});
         }
     }
