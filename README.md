@@ -13,3 +13,15 @@
 PPT 폴더는 js 및 React의 기본 문법을 정리한 것입니다.
 
 [웹 구경하기](https://cocky-montalcini-1434be.netlify.com)
+
+코드 실행 방법 : 
+1. Node.js 및 git 다운로드
+2. 폴더 생성 및 해당 폴더로 cmd 창(또는 git bash)
+3. git init
+4. git config 등의 설정
+5. git remote add [git url]
+6. git pull [remote name] [branch name]
+7. npm install -g yarn
+8. yarn 
+9. yarn start
+10. 서버 종료를 원할 시 ctrl + c
