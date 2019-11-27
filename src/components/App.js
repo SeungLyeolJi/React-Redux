@@ -1,13 +1,12 @@
 import React from 'react';
 import RouterWrap from "./Router";
-import GlobalStyles from "./css/GlobalStyles"
+import "../assets/scss/GlobalStyles.scss";
 // import RouterWrap from "./Router";
 
 function App() {
   return (
     <div className="wrapper">
-        <RouterWrap/>   
-        <GlobalStyles/>
+        <RouterWrap/>
     </div>
   )
 }

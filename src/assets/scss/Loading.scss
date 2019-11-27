@@ -1,0 +1,12 @@
+.loadingBox{
+    position: absolute;
+    width: 100%;
+    z-index: 300;
+    .loadingImg {
+        margin: 80px auto;
+        display: block;
+        width: 130px;
+        height: 130px;
+        background-size: 130px;
+    }
+}

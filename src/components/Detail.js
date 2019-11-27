@@ -1,227 +1,32 @@
-import React from 'react';
-import styled from "styled-components";
+import React,{useEffect,useState} from 'react';
 import empty from "../assets/img/empty.png"
-import star from "../assets/img/star.png";
 import Loading from "./Loading";
 import {Link} from "react-router-dom";
+import "../assets/scss/detail.scss";
+
+import starIcon from "../assets/img/star.png";
 
 const Detail = ({result, isError, isLoading, history, keywordList}) => {
-    const DetailBox = styled.div`
-        width: 90%;
-        margin:0 auto;
-        @media ( max-width: 768px ) {
-           .movieMainInfo{
-              width: 80%;
-              img{
-                  height: auto;
-                  width: 40%;
-              }
-              .movieMainInfoText{
-                  width: 55%;
-                  padding: 0px;
-                  margin: 0;
-                  margin-right: 5%;
-                  float: left;
-              }
-           } 
+    const [score, setScore] = useState(0);
+
+    useEffect(()=>{
+        console.log(result);
+        if(result !== null ){
+            setScore(result.vote_average*10);
         }
-        @media (max-width:  370px){
-            .movieMainInfo{
-                img{
-                   width: 60%;
-                   margin: 0 auto;
-                   display: block;
-                }
-                .movieMainInfoText{
-                    margin-top: 18px;
-                    float: none;
-                    width: 100%;
-                    text-align: center;
-                    height: auto;
-                }
-            }
-        } 
-        .keywordList span:hover {
-            background: cornflowerblue;
-            color: white;
-            border: 1px solid black;
-        }
-        .movieMainInfo {
-             @media ( max-width: 768px ) {
-              width: 100%;
-             }
-            margin: 0 auto;width: 500px;margin-top: 30px;
-        }
-        .notFound {
-            text-align: center;
-            font-size: 20px;
-            padding: 40px;
-            font-weight: 600;
-            text-decoration: underline;
-            .img {
-                font-size: 50px;
-                padding-top: 50px;
-            }
-        }
-        img {
-            width: 200px;height: 300px;
-        }
-        .movieMainInfoText{
-            width: 260px;
-            float: right;
-            padding: 20px;
-            height: 240px;
-            margin-top: 20px;
-            .genres span {
-                margin-left: 5px;
-                a{
-                    border-bottom: 1px solid #d91c0b;
-                    padding: 0 2px ;
-                }
-                a:hover{
-                   background: #d91c0b;
-                   color: white;                
-                } 
-            }
-            p.title {
-                font-size: larger;
-                font-weight: 600;
-                display : inline-block;
-            }
-            p.originTitle {
-                color: #555;
-                display : inline-block;
-                margin-left: 7px;
-            }
-            p.genres {
-                margin-top: 10px;
-            }
-            p{
-                line-height:25px;
-            }
-        }
-        .overview {
-            @media ( max-width: 768px ) {
-               width: 90%;
-               margin: 50px auto 20px;
-            }
-            @media (max-width: 475px){
-              font-size: 3.9vw;
-              line-height: 6vw;
-              font-weight: 600;
-            }
-            width: 700px;
-            margin: 50px auto 70px;
-            line-height: 30px;
-            font-size: 16px;
-            text-align: center;
-            font-weight: 600;
-        }
-        .tagline{
-            @media ( max-width: 768px ) {
-                margin: 30px 0 0;
-                font-size: 3.8vw;
-            }
-            font-weight: 900;
-            padding: 5px;
-            background: #444;
-            line-height: 40px;
-            font-style: italic;
-            font-size: 20px;
-            text-align: center;
-            display: block;
-            margin: 80px auto 60px;
-            max-width: 750px;
-            color: white;
-        }
-        .movieYoutubeBox{
-            margin: 0 auto;
-            width: 700px;
-            height: auto;
-            @media ( max-width: 768px ) {
-                 width: 90%;
-            }
-            
-            iframe {
-                width : 100%;
-                height: 400px;
-                 @media ( max-width: 768px ) {
-                       height:  auto;
-                 }
-            }
-            .videoLabel {
-                @media ( max-width: 768px ) {
-                    font-size: 2vw;
-                 }
-                 @media (max-width: 370px){
-                    width: 100%;
-                    padding: 5px 0;
-                    line-height: 5vw;
-                    text-align: center;
-                 }
-                top: -37px;
-                font-weight: 400;
-                background: #d91c0b;
-                color: white;
-                display: inline-block;
-                padding: 7px 25px;
-                border-radius: 20px 20px 0 0;
-                margin-top: 8px;
-            }
-        }
-        .keywordList {
-           @media ( max-width: 768px ) {
-            width: 90%;
-           }
-           max-width: 700px;
-           margin: 0 auto;
-           text-align: center;
-           padding: 40px 0px 20px;   
-        }
-        .keywordList span {
-            text-align: center;
-            border: 1px solid #3b6ed8;;
-            border-radius: 20px;
-            background: aliceblue;
-            font-size: 15px;
-            height: 30px;
-            line-height: 30px;
-            display: inline-block;
-            padding: 1px 10px;
-            margin: 4px 2px;
-        }
-        .keywordList p {
-            font-weight: 600;
-            margin-bottom: 30px;
-        }
-    `;
-    const Rank = styled.div`
-        display:flex;margin:10px 0;
-        .star{
-            width:103px;height:16px;background:url(${star}) no-repeat;background-size:103px auto;margin-top:1px;
-            .per{
-                width:${props => props.star}%;height:100%;font-size:0;
-                background:url(${star}) no-repeat 0 100%;background-size:103px auto;
-            }
-        }
-        .text{
-            margin-left:10px;color:#666;font-size:14px;
-            span{color:#333;font-weight:bold;}
-        }
-        @media (max-width:  370px){
-            display: block;
-            .star{
-                 display: block;
-                 margin: 0 auto;
-            }
-            .text{
-                 display: block;
-                 margin: 0 auto;
-            }
-        }
-    `;
+    }, [result]);
+
+
+    const starStyle = {
+        backgroundImage : `url(${starIcon})`
+    };
+    const perStyle = {
+        width: `${score}%`,
+        backgroundImage : `url(${starIcon})`
+    };
+
     return (
-        <DetailBox>
+        <div className="detailBox">
             {
                 isLoading ?
                     (
@@ -255,12 +60,12 @@ const Detail = ({result, isError, isLoading, history, keywordList}) => {
                                                     result.original_title
                                                 }
                                             </p>
-                                            <Rank star={result.vote_average * 10}>
-                                                <div className="star">
-                                                    <div className="per">{result.vote_average * 10}%</div>
+                                            <div className="rank">
+                                                <div className="star" style={starStyle}>
+                                                    <div className="per" style={perStyle}/>
                                                 </div>
                                                 <p className="text"><span>{result.vote_average}</span> / 10</p>
-                                            </Rank>
+                                            </div>
 
                                             <p className="genres">
                                                 장르 :
@@ -321,7 +126,7 @@ const Detail = ({result, isError, isLoading, history, keywordList}) => {
                             )
                     )
             }
-        </DetailBox>
+        </div>
     )
 };
 

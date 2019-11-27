@@ -1,0 +1,133 @@
+.searchWrapper {
+  .errorLogo, .notFound {
+    text-align: center;
+    margin-top: 30px;
+    font-size: 18px;
+  }
+  .searchBox {
+    width: 100%;
+    max-width: 545px;
+    margin: 0 auto;
+    padding: 40px;
+    box-sizing: border-box;
+    form {
+      position: relative;
+      display: inline-block;
+      width: 100%;
+    }
+    .searchInputBox {
+      .searchInput {
+        padding-left: 20px;
+        width: calc(100% - 45px);
+        height: 45px;
+        padding-right: 60px;
+        box-sizing: border-box;
+        font-size: 18px;
+      }
+    }
+    .searchSubmit {
+      position: absolute;
+      right: 0;
+      top: 0;
+      width: 45px;
+      height: 45px;
+      background: #444;
+      border: none;
+      text-align: center;
+      line-height: 35px;
+      color: white;
+      :after {
+        background: no-repeat center;
+        background-size: 100% auto;
+      }
+    }
+    @media (max-width: 599px) {
+      width: 100%;
+      .searchInputBox {
+        .searchInput {
+          width: 100%;
+        }
+      }
+    }
+  }
+
+  .listBox {
+    margin: 0 auto;
+    width: 1310px;
+    @media (max-width: 1309px) {
+      width: 1048px;
+    }
+
+    @media (max-width: 1047px) {
+      width: 786px;
+    }
+
+    @media (max-width: 785px) {
+      width: 524px;
+    }
+
+    @media (max-width: 523px) {
+      width: 90%;
+    }
+
+  }
+
+  .pagiNation {
+    .circle {
+      padding: 0 5px;
+      cursor: pointer;
+      font-weight: 600;
+      color: #444;
+      line-height: 30px;
+      width: 30px;
+      height: 30px;
+      border-radius: 15px;
+      display: inline-block;
+      text-align: center;
+      margin: 0
+    }
+    .currCircle {
+      color: red;
+    }
+    .pagiNationUl {
+      text-align: center;
+      padding: 25px 0 30px;
+      @media (max-width: 510px) {
+        li {
+          font-size: 3.3vw;
+        }
+        img {
+          width: 15px;
+          height: 15px;
+        }
+      }
+    }
+    .arrow {
+      display: inline-block;
+    }
+    .arrow img {
+      width: 20px;
+      height: 20px;
+      top: 7.5px;
+      position: relative;
+      margin: 3px;
+      cursor: pointer;
+    }
+  }
+
+  .searchLogo {
+    text-transform: capitalize;
+    font-size: 20px;
+    text-align: center;
+    height: 40px;
+    line-height: 40px;
+    width: 300px;
+    font-weight: 500;
+    margin-bottom: 15px;
+    @media (max-width: 768px) {
+      display: block;
+      width: 100%;
+    }
+  }
+}
+
