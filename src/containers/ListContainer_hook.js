@@ -1,28 +1,35 @@
-import React,{useEffect,useState} from "react";
+import React, {useState, useEffect} from "react";
 import {moviesApi} from "../api";
 import Item from "../components/Item";
 import List from "../components/List";
 import Loading from "../components/Loading";
-import { connect } from 'react-redux';
+import {connect} from 'react-redux';
 import {modeChange, pageChange, scrollyChange, isScrollChange} from "../modules/list";
 import {bindActionCreators} from "redux";
 
-const ListContainer = () =>{
-    const [ isLoading, setIsLoading ] = useState(true);
-    const [ page, setPage ] = useState(1);
-    const [ content, setContent ] = useState([]);
-    const [ isChange, setIsChange ] = useState(false);
-    const [ scrollY , setScrollY ] = useState(0);
-    const [ isScroll, setIsScroll ] = useState(false);
+const ListContainer = (props) => {
+    const [isLoading, setIsLoading] = useState(true); //로딩여부
+    const [isScroll, setIsScroll] = useState(false); //스크롤여부
+    const [isChange, setIsChange] = useState(false); //변경여부
+    const [content, setContent] = useState([]); //콘텐츠 담을 변수
+    const [page, setPage] = useState(1); //페이지
+    const [scrollY, setScrollY] = useState(0); //스크롤 해야될 Y값
 
-    clickHandler = () =>{
-        const props = this.props;
-        props.scrollyChange(window.scrollY);
-        props.pageChange(this.state.page);
+
+
+    const handleScroll = () => {
+        const {innerHeight} = window; //화면 높이
+        const {scrollHeight} = document.body; //전체 스크롤 가능 길이
+        // IE에서는 document.documentElement 를 사용.
+        const scrollTop = (document.documentElement && document.documentElement.scrollTop) || document.body.scrollTop;//스크롤 위치
+        //전체 스크롤은 화면 높이를 포함해서 화면 높이를 뺴고 현재 스크롤 위치를 뺌
+        if (scrollHeight - innerHeight - scrollTop < 1) {
+            setPage(page + 1);
+        }
     };
 
-    const getMoviesList = async(page) => {
-        const mode = this.props.mode;
+    const getMoviesList = async(page) =>{
+        const mode = props.mode;
         let movies;
         if(mode !== null){
             try{
@@ -31,9 +38,9 @@ const ListContainer = () =>{
                 }else if(mode === "topRated"){
                     movies = await moviesApi.topRated(page);
                 }else if(mode === "genreListView"){
-                    movies = await moviesApi.genreListView(this.props.genreId, page);
+                    movies = await moviesApi.genreListView(props.genreId, page);
                 }else if(mode === "keywordListView"){
-                    movies = await moviesApi.keywordListView(this.props.keywordId,page);
+                    movies = await moviesApi.keywordListView(props.keywordId,page);
                 }else if(mode === "upComing"){
                     movies = await moviesApi.upcoming(page);
                 }
@@ -48,91 +55,64 @@ const ListContainer = () =>{
         return movies;
     };
 
-    const changeContent = async()=>{
-        let content = [];
-        let re =1;
-        for( ; re <= this.state.page ; ++re){
-            content.push(<Item key={re} list={await (getMoviesList(re))} clickHandler={clickHandler}/>);
-        }
-        this.setState({isLoading : false, content});
+    const clickHandler = () =>{
+        props.scrollyChange(window.scrollY);
+        props.pageChange(this.state.page);
     };
 
-    const setting = async() =>{
-        await changeContent();
-        if(  this.state.isScroll === true ){
-            if(this.props.blockingScroll === undefined){
-                window.scrollTo(0, this.state.scrollY);
-            }
-            this.setState({isScroll : false});
+    const listPush = async () =>{
+        let list = null;
+        let tmpContent  = content;
+        for (let re = props.page; re <= page; ++re) {
+            list = await getMoviesList(re);
+            console.log(list);
+            await tmpContent.push(<Item key={re} list={list} clickHandler={clickHandler}/>);
+            setContent(tmpContent);
         }
+        setIsLoading(false);
     };
 
-    //componentwillreceiveprops 대신에 사용
-    // static getDerivedStateFromProps(nextProps, prevState) {
-    //     if(nextProps.isScroll){
-    //         nextProps.isScrollChange(false);
-    //         return ({page : nextProps.page, scrollY: nextProps.scrolly, isScroll : true});
-    //     }
-    //     if(nextProps.genreId !== null && prevState.isChange !== true){
-    //        return ({isChange : true})
-    //     }else if(nextProps.genreId !== null && prevState.isChange !== false){
-    //         return ({isChange : false})
-    //     }
-    // }
+    useEffect(() => {
+        listPush();
+        window.addEventListener("scroll", handleScroll);
+        return () => {
+            window.removeEventListener("scroll", handleScroll);
+        }
+    }, []);
+
+    useEffect(() => {
+        listPush();
+        if (document.getElementById("notice") !== null) {
+            let notice = document.getElementById("notice");
+            notice.style.display = "block";
+            setTimeout(() => {
+                notice.style.display = "none";
+            }, 800);
+        }
+    }, [page]);
 
     useEffect(()=>{
-        setting();
-        window.addEventListener("scroll", handleScroll);
-        return window.removeEventListener("scroll", handleScroll);
-    },[]);
+        console.log(isLoading);
+        console.log(content);
+    },[isLoading]);
 
-
-    const handleScroll = () => {
-        const { innerHeight } = window; //화면 높이
-        const { scrollHeight } = document.body; //전체 스크롤 가능 길이
-        // IE에서는 document.documentElement 를 사용.
-        const scrollTop = (document.documentElement && document.documentElement.scrollTop) || document.body.scrollTop;//스크롤 위치
-        //전체 스크롤은 화면 높이를 포함해서 화면 높이를 뺴고 현재 스크롤 위치를 뺌
-        if (scrollHeight - innerHeight - scrollTop < 1) {
-            const notice = document.getElementById("notice");
-            if(notice !== null){
-                notice.style.display = "block";
-                setTimeout(()=>{
-                    notice.style.display = "none";
-                },800);
-                this.setState({
-                    page : this.state.page+1
-                });
-                this.changeContent();
-            }
-        }
-    };
-
-    // render(){
-    //     if(this.state.isChange){
-    //         this.changeContent();
-    //     }
-    //     const {isLoading, content} = this.state;
-    //
-
-        return (
-            <>
-                {
-                    isLoading === true ?
+    return(
+        <>
+            {
+                isLoading === true ?
                     <Loading/>
                     :
                     <List content={content}/>
-                }
-            </>
-        );
-    // }
+            }
+        </>
+    )
 };
 
 const mapStateToProps = ({list}) => ({
-    mode : list.mode,
-    page : list.page,
-    scrolly : list.scrolly,
-    isScroll : list.isScroll,
+    mode: list.mode,
+    page: list.page,
+    scrollY: list.scrolly,
+    isScroll: list.isScroll,
 });
 
 const mapDispatchToProps = dispatch => bindActionCreators({

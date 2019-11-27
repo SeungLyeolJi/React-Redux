@@ -46,8 +46,8 @@ class ListContainer extends React.Component{
 
     setContent = async()=>{
         let content = [];
-        let re =1;
-        for( ; re <= this.state.page ; ++re){
+        for( let re = this.props.page ; re <= this.state.page ; ++re){
+            console.log(re);
             content.push(<Item key={re} list={await (this.getMoviesList(re))} clickHandler={this.clickHandler}/>);
         }
         this.setState({isLoading : false, content});
@@ -76,7 +76,7 @@ class ListContainer extends React.Component{
             return ({page : nextProps.page, scrollY: nextProps.scrolly, isScroll : true});
         }
         if(nextProps.genreId !== null && prevState.isChange !== true){
-           return ({isChange : true})
+            return ({isChange : true})
         }else if(nextProps.genreId !== null && prevState.isChange !== false){
             return ({isChange : false})
         }
@@ -118,14 +118,13 @@ class ListContainer extends React.Component{
         }
         const {isLoading, content} = this.state;
 
-
         return (
             <>
                 {
                     isLoading === true ?
-                    <Loading/>
-                    :
-                    <List content={content}/>
+                        <Loading/>
+                        :
+                        <List content={content}/>
                 }
             </>
         );
@@ -147,4 +146,3 @@ export default connect(
     mapStateToProps,
     mapDispatchToProps,
 )(ListContainer);
-

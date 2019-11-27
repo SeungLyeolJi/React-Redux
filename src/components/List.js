@@ -9,7 +9,7 @@ const List = ({content}) =>{
                             {content}
                         </ul>
             </div>
-            <div className="Notice" id="notice">
+            <div className="notice" id="notice">
                     Next List!!
             </div>
        </>
