@@ -35,7 +35,7 @@ PPT 폴더는 js 및 React의 기본 문법을 정리한 것입니다.
         
 + 추후 변경사항
     - useMemo, useCallBack으로 최적화 해보기.   
-    - ~~스크롤 이벤트를 history라는 파일을 만들어서 제어해보기 (참고 코드 보면서) & withModeChange 파일도 없애기
+    - ~~스크롤 이벤트를 history라는 파일을 만들어서 제어해보기 (참고 코드 보면서) & withModeChange 파일도 없애기~~
         * history 폴더를 만들어서 해봤는데 큰 merit 없음, 지금과 같이 각 container 에서 redux를 불러야함
         * 참고 코드 와의 차별점으로 withModeChange 놔두는게 좋다고 판단함   
     - ListContainer 에 코드를 줄이는 방향으로 수정해보기  
