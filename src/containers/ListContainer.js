@@ -46,7 +46,7 @@ class ListContainer extends React.Component{
 
     setContent = async()=>{
         let content = [];
-        for( let re = this.props.page ; re <= this.state.page ; ++re){
+        for( let re = 1 ; re <= this.state.page ; ++re){
             console.log(re);
             content.push(<Item key={re} list={await (this.getMoviesList(re))} clickHandler={this.clickHandler}/>);
         }
