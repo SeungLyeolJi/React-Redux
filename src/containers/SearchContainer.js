@@ -74,7 +74,7 @@ const SearchContainer = () => {
         setPage(parseInt(e.target.innerText));
         handleContent(parseInt(e.target.innerText));
     };
-    window.scrollTo(0,0);
+
     return (
         <>
             <Search

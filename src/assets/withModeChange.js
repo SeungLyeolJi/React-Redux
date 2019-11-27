@@ -7,7 +7,6 @@ const withModeChange = (WrappedComponent) => {
             if (props.mode !== props.newMode ){
                 props.modeChange(props.newMode);
                 props.isScrollChange(false);
-                window.scrollTo(0, 0);
             } else {
                 props.isScrollChange(true);
             }

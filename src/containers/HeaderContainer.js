@@ -8,7 +8,6 @@ const GenresContainer=()=>{
 
     useEffect(()=>{
         getGenreList();
-
     },[]);
 
     const getGenreList = async() => {
@@ -18,7 +17,6 @@ const GenresContainer=()=>{
         setIsLoading(false);
     };    
 
-    window.scrollTo(0,0);
     return (
         <>
             {isLoading === true ? <></> : <Header genreList={genreList}/>}            

@@ -29,9 +29,6 @@ const DetailContainer = ({ match, history }) => {
         handleContent();
     }, []);
 
-    
-        
-    window.scrollTo(0,0);   
     return (
         <Detail
             result={result}

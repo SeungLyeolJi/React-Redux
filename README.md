@@ -5,7 +5,7 @@
 상영작, 개봉예정작, 명작, 장르별, 키워드별, 검색
 
 + #### mvoie_app
-    * ###### [무비앱 참고파일](https://github.com/seonn35/movies)
+    * ###### [무비앱 참고코드](https://github.com/seonn35/movies)
     * ###### [무한 로딩](https://velog.io/@killi8n/Dnote-6-1.-React-무한-스크롤링-기능-구현.-79jmep7xes)
     * ###### [리액트 라우터](https://velopert.com/3275)
     * ###### [리덕스](https://velog.io/@velopert/Redux-3-리덕스를-리액트와-함께-사용하기-nvjltahf5e)
@@ -31,3 +31,8 @@ PPT 폴더는 js 및 React의 기본 문법을 정리한 것입니다.
 + 에러
     - There might be a problem with the project dependency tree. It is likely not a bug in Create React App, but something you need to fix locally.
         * 해결법은 C:\Users\doje1( 사용중인 사용자? )에 node module을 삭제하면 됨 
+        
++ 추후 변경사항
+    - useMemo, useCallBack으로 최적화 해보기.   
+    - 스크롤 이벤트를 history라는 파일을 만들어서 제어해보기 (참고 코드 보면서) & withModeChange 파일도 없애기 
+    - ListContainer 에 코드를 줄이는 방향으로 수정해보기  

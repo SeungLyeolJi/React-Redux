@@ -4,7 +4,7 @@ import "../assets/scss/Genres.scss"
 
 const Genres = ({list, menuClose}) => {
     return (
-        <div className="genreUl">
+        <ul className="genreUl">
             {
                 list.map((item, idx) => {
                     return (
@@ -17,7 +17,7 @@ const Genres = ({list, menuClose}) => {
                     );
                 })
             }
-        </div>
+        </ul>
     )
 };
 
