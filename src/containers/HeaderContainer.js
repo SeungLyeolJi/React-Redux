@@ -24,6 +24,6 @@ const GenresContainer=()=>{
             {isLoading === true ? <></> : <Header genreList={genreList}/>}            
         </>
     )
-}
+};
 
 export default GenresContainer;

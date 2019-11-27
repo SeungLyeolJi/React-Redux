@@ -151,16 +151,16 @@ const Search = ({keyword, result, error, isLoading, onSubmit, onChange, nextPage
             limit++;
         }
         return pagiNation;
-    }
+    };
 
     return(
         <SearchWrapper>
             <SearchBox>
                 <form>
                     <div className="SearchInputBox">
-                        <input type="text" className="SearchInput" value={keyword} onChange={onChange}></input>
+                        <input type="text" className="SearchInput" value={keyword} onChange={onChange}/>
                     </div>
-                    <input className="SearchSubmit" placeholder="Search Text Input" value="검색" onClick={onSubmit} type="submit"></input>
+                    <input className="SearchSubmit" placeholder="Search Text Input" value="검색" onClick={onSubmit} type="submit"/>
                 </form>
             </SearchBox>
             {isLoading === true ? 
@@ -179,17 +179,17 @@ const Search = ({keyword, result, error, isLoading, onSubmit, onChange, nextPage
                     <PagiNation>
                         <ul className="pagiNationUl">
                             <li className="arrow" onClick={firstPage}>
-                                <img src={firstArrow} alt="frist arrow"></img>
+                                <img src={firstArrow} alt="frist arrow"/>
                             </li>
                             <li className="arrow" onClick={prevPage}>
-                                <img src={prevArrow} alt="prev arrow"></img>
+                                <img src={prevArrow} alt="prev arrow"/>
                             </li>
                             {getPagiNation()}
                             <li className="arrow" onClick={nextPage}>
-                                <img src={nextArrow} alt="next arrow"></img>
+                                <img src={nextArrow} alt="next arrow"/>
                             </li>
                             <li className="arrow" onClick={lastPage}>
-                            <img src={lastArrow} alt="last arrow"></img>
+                            <img src={lastArrow} alt="last arrow"/>
                             </li>
                         </ul>
                     </PagiNation>
@@ -206,6 +206,6 @@ const Search = ({keyword, result, error, isLoading, onSubmit, onChange, nextPage
             }
         </SearchWrapper>
     )
-}
+};
 
 export default Search;

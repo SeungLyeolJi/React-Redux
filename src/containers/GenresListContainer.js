@@ -25,7 +25,7 @@ const GenreListContainer = ({match, history, genre, genreChange}) => {
             window.scroll(0,0);
             setBlockingScroll(true);
         }
-    }, [parsedId])
+    }, [parsedId]);
 
     //useEffect에 아래 if문을 넣으면 history 및 parsedI가 없어서 종속성 문제 발생
     if (isNaN(parsedId)) {

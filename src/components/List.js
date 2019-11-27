@@ -57,6 +57,6 @@ const List = ({content}) =>{
             </Notice>
        </>
     )
-}
+};
 
 export default List;

@@ -51,13 +51,13 @@ const SearchContainer = () => {
             setPage(page-1);
             handleContent(page-1);
         }
-    }
+    };
     const nextPage = ()=>{
         if(page !== maxPage){
             setPage(page+1);
             handleContent(page+1);
         }
-    }
+    };
     const firstPage = () =>{
         if(page !== 1){
             setPage(1);
@@ -69,11 +69,11 @@ const SearchContainer = () => {
             setPage(maxPage);
             handleContent(maxPage);    
         }
-    }
+    };
     const clickPage = e=>{
         setPage(parseInt(e.target.innerText));
         handleContent(parseInt(e.target.innerText));
-    }
+    };
     window.scrollTo(0,0);
     return (
         <>

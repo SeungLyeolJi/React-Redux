@@ -225,7 +225,7 @@ const Detail = ({result, isError, isLoading, history, keywordList}) => {
             {
                 isLoading ?
                     (
-                        <Loading></Loading>
+                        <Loading/>
                     )
                     :
                     (
@@ -298,7 +298,7 @@ const Detail = ({result, isError, isLoading, history, keywordList}) => {
                                                             <div className="videoLabel">{item.name}
                                                             </div>
                                                             <iframe src={`https://www.youtube.com/embed/${item.key}`}
-                                                                    title={item.name} key={item.id}></iframe>
+                                                                    title={item.name} key={item.id}/>
                                                         </div>
                                                     )
                                                 }
@@ -317,13 +317,12 @@ const Detail = ({result, isError, isLoading, history, keywordList}) => {
                                             })
                                         }
                                     </div>
-
                                 </div>
                             )
                     )
             }
         </DetailBox>
     )
-}
+};
 
 export default Detail;

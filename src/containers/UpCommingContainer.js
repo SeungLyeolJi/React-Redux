@@ -14,7 +14,7 @@ const UpCommingContainer = () => {
             <ListContainer/>
         </>
     )
-}
+};
 const mapStateToProps = ({list}) => ({
     mode: list.mode,
     newMode : "upComing",

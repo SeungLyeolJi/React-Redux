@@ -17,9 +17,9 @@ const LoadingBox = styled.div`
 const Loading = () =>{
     return(
         <LoadingBox>
-            <img className="loadingImg"src={loadingImg} alt="Loading 중"></img>
+            <img className="loadingImg"src={loadingImg} alt="Loading 중"/>
         </LoadingBox>
     )
-}
+};
 
 export default Loading;

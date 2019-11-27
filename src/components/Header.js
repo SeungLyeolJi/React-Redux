@@ -152,7 +152,7 @@ const Header = ({genreList }) => {
         }else{
             setGernesOpen(true);
         }
-    }
+    };
 
     const menuClickHandler = () =>{
         if(mobileMenuOpen){
@@ -160,7 +160,7 @@ const Header = ({genreList }) => {
         }else{
             setMobileMenuOpen(true);
         }
-    }
+    };
 
     const menuClose = () => {
         if(mobileMenuOpen){
@@ -177,7 +177,7 @@ const Header = ({genreList }) => {
                 <HeaderBox>
                     <button className="menuBtn" onClick={isMobile ? menuClickHandler: ()=>{}}/>
                     <ul className={`LinkList ${mobileMenuOpen ? "open" : ""}`}>
-                        <button className="xIcon" onClick={isMobile ? menuClickHandler: ()=>{}}></button>
+                        <button className="xIcon" onClick={isMobile ? menuClickHandler: ()=>{}}/>
                         <li><Link to="/home" onClick={menuClose}>홈</Link></li>
                         <li><Link to="/upcoming" onClick={menuClose}>개봉예정작</Link></li>
                         <li><Link to="/popular" onClick={menuClose}>명작</Link></li>
@@ -187,13 +187,13 @@ const Header = ({genreList }) => {
                         </li>
                     </ul>
                     <SearchBox>
-                        <Link to="/search" onClick={menuClose}></Link>
+                        <Link to="/search" onClick={menuClose}/>
                     </SearchBox>
                 </HeaderBox>
             </HeaderWrapper>
             <Padding/>
         </>
     )
-}
+};
 
 export default Header;

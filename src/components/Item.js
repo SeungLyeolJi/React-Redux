@@ -116,6 +116,6 @@ const Item = ({list, clickHandler}) =>{
             }
         </>
     )
-}
+};
 
 export default Item;

@@ -14,7 +14,7 @@ const PopularContainer = () => {
             <ListContainer/>
         </>
     )
-}
+};
 
 const mapStateToProps = ({list}) => ({
     mode: list.mode,

@@ -14,7 +14,7 @@ const HomeContainer = () => {
             <ListContainer/>
         </>
     )
-}
+};
 
 const mapStateToProps = ({list}) => ({
     mode: list.mode,

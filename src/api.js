@@ -15,6 +15,11 @@ export const moviesApi = {
             page: page,
         }
     }),
+    upcoming : page => api.get("movie/upcoming",{
+        params : {
+            page : page
+        }
+    }),
     movieDetail: id => api.get(`movie/${id}&append_to_response=videos`, {
         params: {
             // api_key: "6f26edc26d6ed9d164d9bc332258be3f",
@@ -42,10 +47,5 @@ export const moviesApi = {
     }),
     keywordList : id => api.get(`movie/${id}/keywords`),
     keywordListView : (id, page = 1) => api.get(`keyword/${id}/movies`),
-    getKeyword : id => api.get(`keyword/${id}`),
-    upcoming : page => api.get("movie/upcoming",{
-        params : {
-            page : page
-        }
-    })
+    getKeyword : id => api.get(`keyword/${id}`)
 };

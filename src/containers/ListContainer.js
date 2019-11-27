@@ -42,16 +42,16 @@ class ListContainer extends React.Component{
             console.log("mode : "+null);
         }
         return movies;
-    }
+    };
 
     setContent = async()=>{
         let content = [];
-        let re =1
+        let re =1;
         for( ; re <= this.state.page ; ++re){
-            content.push(<Item key={re} list={await (this.getMoviesList(re))} clickHandler={this.clickHandler}></Item>);
+            content.push(<Item key={re} list={await (this.getMoviesList(re))} clickHandler={this.clickHandler}/>);
         }
         this.setState({isLoading : false, content});
-    }
+    };
 
     setting = async() =>{
         await this.setContent();
@@ -61,13 +61,13 @@ class ListContainer extends React.Component{
             }
             this.setState({isScroll : false});
         }
-    }
+    };
 
     clickHandler = () =>{
         const props = this.props;
         props.scrollyChange(window.scrollY);
         props.pageChange(this.state.page);
-    }
+    };
 
     //componentwillreceiveprops 대신에 사용
     static getDerivedStateFromProps(nextProps, prevState) {
@@ -106,7 +106,7 @@ class ListContainer extends React.Component{
                 },800);
                 this.setState({
                     page : this.state.page+1
-                })
+                });
                 this.setContent();
             }
         }

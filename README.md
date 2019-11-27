@@ -25,3 +25,7 @@ PPT 폴더는 js 및 React의 기본 문법을 정리한 것입니다.
 8. yarn 
 9. yarn start
 10. 서버 종료를 원할 시 ctrl + c
+
++ 에러
+    * There might be a problem with the project dependency tree. It is likely not a bug in Create React App, but something you need to fix locally.
+    * 해결법은 C:\Users\doje1( 사용중인 사용자? )에 node module을 삭제하면 됨 

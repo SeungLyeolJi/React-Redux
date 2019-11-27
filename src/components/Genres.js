@@ -50,6 +50,6 @@ const Genres = ({list, menuClose}) => {
             }
         </GenreBox>
     )
-}
+};
 
 export default Genres;

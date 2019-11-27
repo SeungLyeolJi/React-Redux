@@ -27,6 +27,6 @@ const RouterWrapper = () =>{
             </Switch>
         </Router>
     )
-}
+};
 
 export default RouterWrapper;
