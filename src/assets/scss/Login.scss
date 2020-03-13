@@ -1,0 +1,19 @@
+.loginBox {
+  top: 200px;
+  text-align: center;
+  position: relative;
+  .inputBox {
+    width: 220px;
+    display: inline-block;
+  }
+  .loginBox input[type="submit"] {
+    top: -10px;
+    position: relative;
+    height: 40px;
+  }
+  input[type="submit"] {
+    position: relative;
+    top: -10px;
+    height: 44px;
+  }
+}

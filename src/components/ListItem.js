@@ -1,9 +1,9 @@
 import React from 'react';
 import empty from "../assets/img/empty.png";
 import { Link } from "react-router-dom";
-import "../assets/scss/Item.scss";
+import "../assets/scss/ListItem.scss";
 
-const Item = ({list, clickHandler}) =>{
+const ListItem = ({list, clickHandler}) =>{
     return(
         <>
             {   
@@ -36,4 +36,4 @@ const Item = ({list, clickHandler}) =>{
     )
 };
 
-export default Item;
+export default ListItem;

@@ -1,5 +1,5 @@
 import React from 'react';
-import List from "../components/Item";
+import List from "./ListItem";
 import Loading from "../components/Loading";
 import "../assets/scss/search.scss"
 

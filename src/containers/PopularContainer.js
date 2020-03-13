@@ -16,10 +16,12 @@ const PopularContainer = () => {
     )
 };
 
+//props로 넣어줄 스토어 상태값 = 말그대로 스토어 상태를 props로 사용이 가능함
 const mapStateToProps = ({list}) => ({
     mode: list.mode,
     newMode: "topRated",
 });
+//props에다가 생성함수를 넣어줌
 const mapDispatchToProps = dispatch => bindActionCreators(
     {modeChange, isScrollChange}, dispatch
 );

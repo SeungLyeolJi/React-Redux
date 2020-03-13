@@ -1,12 +1,12 @@
 import React from 'react';
 import "../assets/scss/List.scss";
 
-const List = ({content}) =>{
+const List = ({listItems}) =>{
     return(
        <>
            <div className="movieListBox">
                         <ul className="movieListUl">
-                            {content}
+                            {listItems}
                         </ul>
             </div>
             <div className="notice" id="notice">

@@ -12,7 +12,9 @@
     * ###### [scss 연결](https://velog.io/@jungsw586/React-%EA%B0%9C%EB%B0%9C%ED%99%98%EA%B2%BD-%EC%84%B8%ED%8C%85%ED%95%98%EA%B8%B0-3.-Sass-%EC%84%A4%EC%B9%98)
     * ###### [style props로 주기](https://stackoverflow.com/questions/39195687/setting-a-backgroundimage-with-react-inline-styles)
     * ###### [useMemo, useCallBack 을 사용해야할 때](https://rinae.dev/posts/review-when-to-usememo-and-usecallback)
-
+    * ###### [react on wordpress 1~5 chapter](https://www.youtube.com/watch?reload=9&v=m2uoYzUlBsg&list=PLD8nQCAhR3tTzWA8K5XQQps4u5kMFJjIG)
+    * ###### [워드프레스 REST API POST](https://developer.wordpress.org/rest-api/reference/post-revisions/#create-a-post-revision)
+ 
 PPT 폴더는 js 및 React의 기본 문법을 정리한 것입니다.
 
 [웹 구경하기](https://cocky-montalcini-1434be.netlify.com)
@@ -38,4 +40,12 @@ PPT 폴더는 js 및 React의 기본 문법을 정리한 것입니다.
     - ~~스크롤 이벤트를 history라는 파일을 만들어서 제어해보기 (참고 코드 보면서) & withModeChange 파일도 없애기~~
         * history 폴더를 만들어서 해봤는데 큰 merit 없음, 지금과 같이 각 container 에서 redux를 불러야함
         * 참고 코드 와의 차별점으로 withModeChange 놔두는게 좋다고 판단함   
-    - ListContainer 에 코드를 줄이는 방향으로 수정해보기  
+    - ListContainer 에 코드를 줄이는 방향으로 수정해보기
+    
+    
+워드프레스 jwt 인증 플러그인으로 받은 값을 워드프레서의 REST API로 요청을 보낼 떄 해더의 값으로 넘기면 되는 것으로 추정
+<br>
+=> 확인을 위해 <br> 
+   + 해더의 값만 넣을 경우
+   + 토큰도 값이 보낼 경우
+   + 토큰 값이 이상한 경우

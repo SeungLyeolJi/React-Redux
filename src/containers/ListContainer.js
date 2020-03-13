@@ -1,6 +1,6 @@
 import React from "react";
 import {moviesApi} from "../api";
-import Item from "../components/Item";
+import ListItem from "../components/ListItem";
 import List from "../components/List";
 import Loading from "../components/Loading";
 import { connect } from 'react-redux';
@@ -44,17 +44,16 @@ class ListContainer extends React.Component{
         return movies;
     };
 
-    setContent = async()=>{
-        let content = [];
+    setListItems = async()=>{
+        let listItems = [];
         for( let re = 1 ; re <= this.state.page ; ++re){
-            console.log(re);
-            content.push(<Item key={re} list={await (this.getMoviesList(re))} clickHandler={this.clickHandler}/>);
+            listItems.push(<ListItem key={re} list={await (this.getMoviesList(re))} clickHandler={this.clickHandler}/>);
         }
-        this.setState({isLoading : false, content});
+        this.setState({isLoading : false, listItems});
     };
 
     setting = async() =>{
-        await this.setContent();
+        await this.setListItems();
         if(  this.state.isScroll === true ){
             if(this.props.blockingScroll === undefined){
                 window.scrollTo(0, this.state.scrollY);
@@ -107,16 +106,16 @@ class ListContainer extends React.Component{
                 this.setState({
                     page : this.state.page+1
                 });
-                this.setContent();
+                this.setListItems();
             }
         }
     };
 
     render(){
         if(this.state.isChange){
-            this.setContent();
+            this.setListItems();
         }
-        const {isLoading, content} = this.state;
+        const {isLoading, listItems} = this.state;
 
         return (
             <>
@@ -124,7 +123,7 @@ class ListContainer extends React.Component{
                     isLoading === true ?
                         <Loading/>
                         :
-                        <List content={content}/>
+                        <List listItems={listItems}/>
                 }
             </>
         );

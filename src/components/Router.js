@@ -8,6 +8,8 @@ import HeaderContainer from "../containers/HeaderContainer";
 import GenresListContainer from "../containers/GenresListContainer";
 import KeywordContainer from "../containers/KeywordContainer";
 import UpCommingContainer from "../containers/UpCommingContainer";
+import LoginContainer from "../containers/LoginContainer"
+import ReviewContainer from "../containers/ReviewContainer";
 
 const RouterWrapper = () =>{
     return(
@@ -22,6 +24,8 @@ const RouterWrapper = () =>{
                 <Route path="/genreList/:id" component={GenresListContainer}/>
                 <Route path="/keywordList/:id" component={KeywordContainer}/>
                 <Route path="/upcoming" component={UpCommingContainer}/>
+                <Route path="/login" component={LoginContainer}/>
+                <Route path="/review" component={ReviewContainer}/>
                 {/* defaulft로 home */}
                 <Redirect from="*" to="/" /> 
             </Switch>
