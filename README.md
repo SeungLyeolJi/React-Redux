@@ -13,8 +13,15 @@
     * ###### [style props로 주기](https://stackoverflow.com/questions/39195687/setting-a-backgroundimage-with-react-inline-styles)
     * ###### [useMemo, useCallBack 을 사용해야할 때](https://rinae.dev/posts/review-when-to-usememo-and-usecallback)
     * ###### [react on wordpress 1~5 chapter](https://www.youtube.com/watch?reload=9&v=m2uoYzUlBsg&list=PLD8nQCAhR3tTzWA8K5XQQps4u5kMFJjIG)
-    * ###### [워드프레스 REST API POST](https://developer.wordpress.org/rest-api/reference/post-revisions/#create-a-post-revision)
- 
+    * ###### [워드프레스 REST API](https://developer.wordpress.org/rest-api/reference/post-revisions/#create-a-post-revision)
+    * ###### [package.json에서 script의 역할(create-react-app의 react-scripts package 살펴보기) ](https://velog.io/@rlaqltmxm/create-react-app-%EC%82%B4%ED%8E%B4%EB%B3%B4%EA%B8%B0)
+    * ###### [wordpress jwt Auth plugin(react)](https://www.npmjs.com/package/wordpress-jwt-auth)
+    * ###### [wordpress jwt Auth plugin(wordpress git)](https://github.com/Tmeister/wp-api-jwt-auth)
+    * ###### [How to: Make JWT-authenticated requests to the Wordpress API](https://wordpress.stackexchange.com/questions/299542/how-to-make-jwt-authenticated-requests-to-the-wordpress-api)
+    * ###### [Using the WordPress REST API with JWT Authentication](https://firxworx.com/blog/wordpress/using-the-wordpress-rest-api-with-jwt-authentication/)
+
+
+  
 PPT 폴더는 js 및 React의 기본 문법을 정리한 것입니다.
 
 [웹 구경하기](https://cocky-montalcini-1434be.netlify.com)

@@ -6,8 +6,8 @@
     "axios": "^0.18.1",
     "default-passive-events": "^1.0.10",
     "node-sass": "^4.13.0",
-    "react": "^16.10.2",
-    "react-dom": "^16.10.2",
+    "react": "^16.13.0",
+    "react-dom": "^16.13.0",
     "react-movie-app": "./",
     "react-redux": "^7.1.1",
     "react-router-dom": "^5.1.2",
@@ -15,7 +15,8 @@
     "redux": "^4.0.4",
     "redux-actions": "^2.6.5",
     "styled-components": "^4.4.0",
-    "styled-reset": "^4.0.2"
+    "styled-reset": "^4.0.2",
+    "wordpress-jwt-auth": "^1.1.1"
   },
   "scripts": {
     "start": "react-scripts start",
