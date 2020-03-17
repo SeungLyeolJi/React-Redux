@@ -2,13 +2,13 @@ import React, {useState, useEffect} from 'react';
 import Login from "../components/Login";
 import clientConfig from "../assets/client-config"
 import axios from 'axios';
-import {connect} from 'react-redux';
-import {isLoginChange, tokenChange} from "../modules/user";
-import {bindActionCreators} from "redux";
+import Loading from '../components/Loading';
 
 const LoginContainer = (props) => {
     const [userId, setUserId] = useState('');
     const [userPw, setUserPw] = useState('');
+    const [autoLogin, setAutoLogin] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
 
     const idOnChange = e => {
         setUserId(e.target.value);
@@ -18,9 +18,13 @@ const LoginContainer = (props) => {
         setUserPw(e.target.value);
     };
 
+    const autoLoginChange = e => {
+        setAutoLogin(e.target.checked);
+    }
+
     useEffect(() => {
         //로그인 했을 떄 메인으로
-        if (props.isLogin === true) {
+        if (localStorage.getItem('token') != null || sessionStorage.getItem('token')) {
             props.history.push('/');
         }
     }, []);
@@ -28,50 +32,48 @@ const LoginContainer = (props) => {
     //처음 로그인시 로딩창을 보여줌 => 로딩 true
     //axios 데이터를 다 가져왔으면 => false
     const onSubmit = e => {
+        setIsLoading(true);
         e.preventDefault();
         const loginData = {'username': userId, 'password': userPw};
         axios.post(`${clientConfig.siteUrl}/wp-json/jwt-auth/v1/token`, loginData).then(
             res => {
-                console.log("res : " + res);
-                console.log(res);
-                if(res.status === 200){
-                    props.isLoginChange(true);
-                    tokenChange(res.data.token);
-                    alert("로그인 되었습니다.");
-                    props.history.push('/');
+                if (res.status === 200) {
+                    console.log(res);
+                    console.log(res.data);
+                    //스토레지 값 변경
+                    if (autoLogin) {
+                        //자동 로그인
+                        localStorage.setItem('token', res.data.token);
+                    } else {
+                        //일반 로그인
+                        sessionStorage.setItem('token', res.data.token);
+                    }
 
-                }else {
+                    setIsLoading(false);
+                    alert("로그인 되었습니다.");
+                    window.location.reload();
+
+                } else {
                     //정상 반환 값이 아님
-                    props.isLoginChange(false);
+                    //스토레지 값 변경
                     alert("정상적인 반환 값이 아닙니다.");
                 }
             }
         ).catch(err => {
-            // console.log('err : ' + err);
-            if (err.response.status === 403) {
-                alert("존재하지 않는 계정을 입력했습니다.");
-                return;
-            }
-            //다른 에러
-            props.isLoginChange(false);
-            alert("알수 없는 에러가 발생했습니다.");
+            setIsLoading(false);
+            console.log('err : ' + err);
+            alert("입력사항을 확인해주세요");
             return;
         })
     };
 
     return (
-        <Login userId={userId} userPw={userPw} idOnChange={idOnChange} pwOnChange={pwOnChange} onSubmit={onSubmit}/>
+        <>
+            <Login userId={userId} userPw={userPw} idOnChange={idOnChange} pwOnChange={pwOnChange} onSubmit={onSubmit}
+                   autoLoginChange={autoLoginChange} autoLogin={autoLogin}/>
+            {isLoading ? <Loading/> : <></>}
+        </>
     )
 };
-
-const mapStateToProps = ({user}) => ({
-    isLogin: user.isLogin
-});
-const mapDispatchToProps = dispatch => bindActionCreators(
-    {isLoginChange, tokenChange}, dispatch
-);
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(LoginContainer);
+export default LoginContainer;
 

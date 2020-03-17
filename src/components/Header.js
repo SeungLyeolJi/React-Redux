@@ -4,7 +4,7 @@ import {Link} from "react-router-dom";
 import Genres from "../components/Genres";
 import "../assets/scss/header.scss";
 
-const Header = ({genreList, genresClickHandler, menuClickHandler, menuClose, logoutHandler, gernesOpen, mobileMenuOpen, isMobile, xIconStyle, menuStyle, searchStyle, isLogin}) => {
+const Header = ({genreList, genresClickHandler, menuClickHandler, menuClose, logoutHandler, gernesOpen, mobileMenuOpen, isMobile, xIconStyle, menuStyle, searchStyle}) => {
     return (
         <>
             <div className="headerWrapper">
@@ -16,13 +16,13 @@ const Header = ({genreList, genresClickHandler, menuClickHandler, menuClose, log
                         }} style={xIconStyle}/>
                         <li><Link to="/home" onClick={menuClose}>홈</Link></li>
                         {/*로그인 버튼 클릭시 팝업을 띄워서 로그인 하고 싶음*/}
-                        {isLogin === true ?
+                        {sessionStorage.getItem('token') != null || localStorage.getItem('token') != null  ?
                             <li><a href="/logout" onClick={logoutHandler}>로그아웃</a></li> :
-                            <li><Link to="/login">로그인</Link></li>}
+                            <li><Link to="/login"onClick={menuClose}>로그인</Link></li>}
                         {/*회원가입은 정보 찾아보기*/}
-                        <li>회원가입</li>
+                        <li><Link to={"/"} onClick={menuClose}>회원가입</Link></li>
                         {/*워드프레스 연결하여서 하기*/}
-                        <li><Link to="/review">리뷰</Link></li>
+                        <li><Link to="/review" onClick={menuClose}>리뷰</Link></li>
                         <li><Link to="/upcoming" onClick={menuClose}>개봉예정작</Link></li>
                         <li><Link to="/popular" onClick={menuClose}>명작</Link></li>
                         <li className={gernesOpen ? "genres on" : "genres"}>

@@ -3,17 +3,26 @@
   text-align: center;
   position: relative;
   .inputBox {
-    width: 220px;
+    width: 240px;
     display: inline-block;
   }
   .loginBox input[type="submit"] {
-    top: -10px;
     position: relative;
-    height: 40px;
+    top: -12px;
+    height: 44px;
+    padding-left: 5px;
+    padding-right: 5px;
   }
   input[type="submit"] {
     position: relative;
-    top: -10px;
+    top: -13px;
     height: 44px;
+  }
+  label {
+    width: 40px;
+    display: inline-block;
+  }
+  .autoLoginBox {
+    font-size: 13px;
   }
 }

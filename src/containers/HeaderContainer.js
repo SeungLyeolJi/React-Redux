@@ -5,9 +5,6 @@ import {useMobile} from "../hooks";
 import searchIcon from "../assets/img/search.png";
 import xIcon from "../assets/img/x.png";
 import menuIcon from "../assets/img/menu.png";
-import {isLoginChange, tokenChange} from "../modules/user";
-import {connect} from 'react-redux';
-import {bindActionCreators} from "redux";
 
 const HeaderContainer = (props) => {
     const [isLoading, setIsLoading] = useState(true);
@@ -77,12 +74,14 @@ const HeaderContainer = (props) => {
     };
 
     const logoutHandler = (e) => {
-        //alert은 값을 반환하지 않음
-        if(!alert("로그아웃 하셨습니다.")){
-            props.isLoginChange(false);
-            props.tokenChange("");
-            e.preventDefault();
+        alert("로그아웃 하셨습니다.");
+        if (localStorage.getItem('token') != null) {
+            localStorage.clear();
+        } else {
+            sessionStorage.clear();
         }
+        props.history.push('/');
+        e.preventDefault();
     };
 
     return (
@@ -92,19 +91,10 @@ const HeaderContainer = (props) => {
                         menuClickHandler={menuClickHandler} genresClickHandler={genresClickHandler} isMobile={isMobile}
                         mobileMenuOpen={mobileMenuOpen}
                         xIconStyle={xIconStyle} menuStyle={menuStyle} searchStyle={searchStyle}
-                        gernesOpen={gernesOpen} isLogin = {props.isLogin}/>}
+                        gernesOpen={gernesOpen}/>}
         </>
     )
 };
 
-const mapStateToProps = ({user}) => ({
-    isLogin : user.isLogin
-});
-const mapDispatchToProps = dispatch => bindActionCreators(
-    {isLoginChange, tokenChange}, dispatch
-);
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps()
-)(HeaderContainer);
+export default HeaderContainer;
 

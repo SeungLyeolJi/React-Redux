@@ -1,0 +1,29 @@
+.reviewWriteBox {
+  text-align: center;
+  h3 {
+    margin-top: 20px;
+  }
+  input[type="text"] {
+    width: 400px;
+    padding: 2px;
+    margin-top: 30px;
+  }
+  textarea {
+    width: 500px;
+    height: 300px;
+    margin-top: 10px;
+  }
+  button {
+    font-size: 14px;
+    margin-top: 20px;
+    width: 150px;
+    padding: 4px;
+  }
+  .header {
+    margin-bottom: 25px;
+  }
+  .body label {
+    position: relative;
+    left: -230px;
+  }
+}

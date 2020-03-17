@@ -40,7 +40,9 @@ PPT 폴더는 js 및 React의 기본 문법을 정리한 것입니다.
 
 + 에러
     - There might be a problem with the project dependency tree. It is likely not a bug in Create React App, but something you need to fix locally.
-        * 해결법은 C:\Users\doje1( 사용중인 사용자? )에 node module을 삭제하면 됨 
+        * 해결법은 C:\Users\doje1( 사용중인 사용자 )에 node module을 삭제하면 됨
+    - index.js:1406 Warning: Cannot update a component from inside the function body of a different component.
+        * react의 자체 버전 에러인듯 함. 이전 버전을 쓰라고함
         
 + 추후 변경사항
     - useMemo, useCallBack으로 최적화 해보기.   
@@ -48,6 +50,7 @@ PPT 폴더는 js 및 React의 기본 문법을 정리한 것입니다.
         * history 폴더를 만들어서 해봤는데 큰 merit 없음, 지금과 같이 각 container 에서 redux를 불러야함
         * 참고 코드 와의 차별점으로 withModeChange 놔두는게 좋다고 판단함   
     - ListContainer 에 코드를 줄이는 방향으로 수정해보기
+    - jwt 보안 문제점 해결 
     
     
 워드프레스 jwt 인증 플러그인으로 받은 값을 워드프레서의 REST API로 요청을 보낼 떄 해더의 값으로 넘기면 되는 것으로 추정
