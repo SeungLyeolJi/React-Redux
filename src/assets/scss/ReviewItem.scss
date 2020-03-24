@@ -1,24 +1,20 @@
-//.reviewItem {
-//  width: 300px;
-//  display: inline-block;
-//  text-align: center;
-//  .reviewHeader {
-//    border: 1px solid black;
-//    border-radius-topleft: 5px;
-//    border-radius-topright: 5px;
-//    height: 30px;
-//    line-height: 30px;
-//    color: white;
-//    background: #d91c0b;
-//  }
-//  .reviewContent {
-//  }
-//  .reviewFooter {
-//    height: 20px;
-//    line-height: 20px;
-//    color: white;
-//    background: #d91c0b;
-//    border-bottom-right-radius: 3px;
-//    border-bottom-left-radius: 3px;
-//  }
-//}
+.reviewItem {
+  margin: 10px 10%;
+  width: 80%;
+  height: 120px;
+  display: inline-block;
+  overflow: hidden;
+  border :1px solid black;
+  font-size: 13px;
+  .reviewHeader{
+    border-bottom: solid 1px;
+    height: 20px;
+    line-height: 20px;
+  }
+  .reviewContent{
+    border-bottom: solid 1px;
+    height: 80px;
+    overflow: hidden;
+    line-height: 16px;
+  }
+}

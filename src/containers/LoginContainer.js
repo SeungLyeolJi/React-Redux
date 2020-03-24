@@ -20,7 +20,7 @@ const LoginContainer = (props) => {
 
     const autoLoginChange = e => {
         setAutoLogin(e.target.checked);
-    }
+    };
 
     useEffect(() => {
         //로그인 했을 떄 메인으로
@@ -28,6 +28,7 @@ const LoginContainer = (props) => {
             props.history.push('/');
         }
     }, []);
+    //Line 30:8:  React Hook useEffect has a missing dependency: 'props.history'. Either include it or remove the dependency array
 
     //처음 로그인시 로딩창을 보여줌 => 로딩 true
     //axios 데이터를 다 가져왔으면 => false
@@ -44,9 +45,11 @@ const LoginContainer = (props) => {
                     if (autoLogin) {
                         //자동 로그인
                         localStorage.setItem('token', res.data.token);
+                        localStorage.setItem('userName', res.data.user_nicename);
                     } else {
                         //일반 로그인
                         sessionStorage.setItem('token', res.data.token);
+                        sessionStorage.setItem('userName', res.data.user_nicename);
                     }
 
                     setIsLoading(false);

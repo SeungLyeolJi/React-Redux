@@ -11,7 +11,7 @@ const HeaderContainer = (props) => {
     const [genreList, setGenreList] = useState([]);
     const [gernesOpen, setGernesOpen] = useState(false);
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-    const [isMobile] = useMobile(useMobile());
+    const [isMobile] = useMobile();
 
     const searchStyle = {
         backgroundImage: `url(${searchIcon})`
@@ -80,8 +80,8 @@ const HeaderContainer = (props) => {
         } else {
             sessionStorage.clear();
         }
-        props.history.push('/');
         e.preventDefault();
+        window.location.href = "/login";
     };
 
     return (

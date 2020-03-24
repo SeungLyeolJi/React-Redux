@@ -19,9 +19,10 @@
     * ###### [wordpress jwt Auth plugin(wordpress git)](https://github.com/Tmeister/wp-api-jwt-auth)
     * ###### [How to: Make JWT-authenticated requests to the Wordpress API](https://wordpress.stackexchange.com/questions/299542/how-to-make-jwt-authenticated-requests-to-the-wordpress-api)
     * ###### [Using the WordPress REST API with JWT Authentication](https://firxworx.com/blog/wordpress/using-the-wordpress-rest-api-with-jwt-authentication/)
+    * ###### [html Entities](https://blog.outsider.ne.kr/380)
+    * ###### [Axios github](https://github.com/axios/axios)
+    
 
-
-  
 PPT 폴더는 js 및 React의 기본 문법을 정리한 것입니다.
 
 [웹 구경하기](https://cocky-montalcini-1434be.netlify.com)
@@ -37,6 +38,8 @@ PPT 폴더는 js 및 React의 기본 문법을 정리한 것입니다.
 8. yarn 
 9. yarn start
 10. 서버 종료를 원할 시 ctrl + c
+11. 워드프레스 사이트를 하나 판다(로컬이든 도메이든)
+12. 해당 워드프레스의 jwt 허용을 한다 
 
 + 에러
     - There might be a problem with the project dependency tree. It is likely not a bug in Create React App, but something you need to fix locally.

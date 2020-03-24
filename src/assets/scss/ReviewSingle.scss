@@ -1,0 +1,55 @@
+
+.reviewSingleBox{
+  position: relative;
+  text-align: center;
+  width: 80%;
+  margin : 0 auto;
+
+  .title{
+    margin: 70px auto 0px;
+    width: 600px;
+    height: 50px;
+    line-height: 50px;
+    font-size: 20px;
+  }
+  .subBox{
+    margin: 30px auto 0px;
+    position: relative;
+    width: 90%;
+    text-align: right;
+    .date, .author{
+      display: inline-block;
+      height: 45px;
+      line-height: 45px;
+      font-size: 14px;
+      text-align: right;
+    }
+    .date{
+      margin-right: 10px;
+    }
+  }
+  .reviewHeader {
+    border-bottom: 1px solid;
+    width: 100%;
+    height: 20px;
+    line-height: 20px;
+  }
+  .reviewContent {
+    height: 80px;
+    border-bottom: 1px solid;
+  }
+  .reviewSingleContent{
+    width: 90%;
+    margin: 50px auto 40px;
+  }
+  .reviewSingleAdminBox button{
+    position: absolute;
+    padding: 7px 20px;
+    top : -45px;
+    right : 65px;
+    box-sizing: border-box;
+    &.modify {
+      margin-right: 85px;
+    }
+  }
+}

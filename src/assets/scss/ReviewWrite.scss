@@ -13,12 +13,6 @@
     height: 300px;
     margin-top: 10px;
   }
-  button {
-    font-size: 14px;
-    margin-top: 20px;
-    width: 150px;
-    padding: 4px;
-  }
   .header {
     margin-bottom: 25px;
   }
@@ -26,4 +20,12 @@
     position: relative;
     left: -230px;
   }
+}
+.reviewWritButton{
+  padding: 7px 35px;
+  text-align: center;
+  transform: translate(-50%);
+  position: relative;
+  left: 50%;
+  top: 20px;
 }

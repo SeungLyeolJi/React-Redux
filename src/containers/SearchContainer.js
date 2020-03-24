@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
 import Search from "../components/Search";
 import {moviesApi} from "../api";
 
@@ -10,12 +10,6 @@ const SearchContainer = () => {
     const [isLoading, setIsLoading] = useState(false);
     const [maxPage, setMaxPage] = useState(1);
     const [prevKeyword, setPrevKeyword] = useState(keyword);
-
-    useEffect(()=>{
-        if( keyword !== "" ) {
-            handleContent(page);
-        }
-    },[prevKeyword, page]);
 
     const onSubmit = e => {
         e.preventDefault();

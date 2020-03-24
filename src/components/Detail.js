@@ -1,4 +1,4 @@
-import React,{useEffect,useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import empty from "../assets/img/empty.png"
 import Loading from "./Loading";
 import {Link} from "react-router-dom";
@@ -9,21 +9,24 @@ import starIcon from "../assets/img/star.png";
 const Detail = ({result, isError, isLoading, history, keywordList}) => {
     const [score, setScore] = useState(0);
 
-    useEffect(()=>{
-        console.log(result);
-        if(result !== null ){
-            setScore(result.vote_average*10);
+    useEffect(() => {
+        if (result !== null) {
+            setScore(result.vote_average * 10);
         }
     }, [result]);
 
+    useEffect(() => {
+        window.scroll(0, 0);
+    }, [isLoading]);
 
     const starStyle = {
-        backgroundImage : `url(${starIcon})`
+        backgroundImage: `url(${starIcon})`
     };
     const perStyle = {
         width: `${score}%`,
-        backgroundImage : `url(${starIcon})`
+        backgroundImage: `url(${starIcon})`
     };
+
 
     return (
         <div className="detailBox">
@@ -49,7 +52,8 @@ const Detail = ({result, isError, isLoading, history, keywordList}) => {
                                     <div className="movieMainInfo">
                                         {result.poster_path !== null ?
                                             <img src={`https://image.tmdb.org/t/p/w200${result.poster_path}`}
-                                                 alt={result.title}/> : <img src={empty} alt="empty"/>
+                                                 alt={result.title} id="postImage"/> :
+                                            <img src={empty} alt="empty" id="postImage"/>
                                         }
                                         <div className="movieMainInfoText">
                                             <p className="title">
@@ -91,7 +95,8 @@ const Detail = ({result, isError, isLoading, history, keywordList}) => {
                                             </p>
                                         </div>
                                     </div>
-                                    {result.tagline === "" ? <></> : <span className="tagline">{result.tagline}</span>}
+                                    {result.tagline === "" ? <></> :
+                                        <span className="tagline">{result.tagline}</span>}
                                     <div className="overview">
                                         {result.overview}
                                     </div>

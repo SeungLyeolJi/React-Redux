@@ -10,7 +10,8 @@ import KeywordContainer from "../containers/KeywordContainer";
 import UpCommingContainer from "../containers/UpCommingContainer";
 import LoginContainer from "../containers/LoginContainer"
 import ReviewContainer from "../containers/ReviewContainer";
-import ReviewWriteContainer from "../containers/ReviewWriteContainer";
+import ReviewSingleContainer from "../containers/ReviewSingleContainer";
+import ReviewManagementContainer from "../containers/ReviewManagementContainer";
 
 const RouterWrapper = () =>{
     return(
@@ -27,7 +28,9 @@ const RouterWrapper = () =>{
                 <Route path="/upcoming" component={UpCommingContainer}/>
                 <Route path="/login" component={LoginContainer}/>
                 <Route path="/review" exact component={ReviewContainer}/>
-                <Route path="/review/write" component={ReviewWriteContainer}/>
+                <Route path="/review/write" component={ReviewManagementContainer}/>
+                <Route path="/review/:id" component={ReviewSingleContainer}/>
+                <Route path="/modify/:id" component={ReviewManagementContainer}/>
                 {/* defaulft로 home */}
                 <Redirect from="*" to="/" /> 
             </Switch>

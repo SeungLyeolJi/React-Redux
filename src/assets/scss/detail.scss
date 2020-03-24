@@ -1,6 +1,16 @@
+#bigPostImageBox {
+  width: 100%;
+  position: fixed;
+  height: 100%;
+  background-color: #444444;
+  opacity: 80%;
+  display: none;
+}
+
 .detailBox {
   width: 90%;
   margin: 0 auto;
+
   @media (max-width: 768px) {
     .movieMainInfo {
       width: 80%;
@@ -17,6 +27,7 @@
       }
     }
   }
+
   @media (max-width: 370px) {
     .movieMainInfo {
       img {
@@ -33,11 +44,13 @@
       }
     }
   }
+
   .keywordList span:hover {
     background: cornflowerblue;
     color: white;
     border: 1px solid black;
   }
+
   .movieMainInfo {
     @media (max-width: 768px) {
       width: 100%;
@@ -46,6 +59,7 @@
     width: 500px;
     margin-top: 30px;
   }
+
   .notFound {
     text-align: center;
     font-size: 20px;
@@ -57,10 +71,12 @@
       padding-top: 50px;
     }
   }
+
   img {
     width: 200px;
     height: 300px;
   }
+
   .movieMainInfoText {
     width: 260px;
     float: right;
@@ -95,6 +111,7 @@
       line-height: 25px;
     }
   }
+
   .overview {
     @media (max-width: 768px) {
       width: 90%;
@@ -112,6 +129,7 @@
     text-align: center;
     font-weight: 600;
   }
+
   .tagline {
     @media (max-width: 768px) {
       margin: 30px 0 0;
@@ -129,6 +147,7 @@
     max-width: 750px;
     color: white;
   }
+
   .movieYoutubeBox {
     margin: 0 auto;
     width: 700px;
@@ -164,6 +183,7 @@
       margin-top: 8px;
     }
   }
+
   .keywordList {
     @media (max-width: 768px) {
       width: 90%;
@@ -173,6 +193,7 @@
     text-align: center;
     padding: 40px 0 20px;
   }
+
   .keywordList span {
     text-align: center;
     border: 1px solid #3b6ed8;;
@@ -185,10 +206,12 @@
     padding: 1px 10px;
     margin: 4px 2px;
   }
+
   .keywordList p {
     font-weight: 600;
     margin-bottom: 30px;
   }
+
 }
 
 .rank {
