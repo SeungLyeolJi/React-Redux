@@ -44,7 +44,7 @@ export const useTokenVelidate = (props) => {
             props.history.push("/login");
         }
 
-    }, []);
+    }, [props.history, token]);
 };
 
 export const useGetToken = () => {

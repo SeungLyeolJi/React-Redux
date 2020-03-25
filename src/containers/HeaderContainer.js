@@ -6,7 +6,7 @@ import searchIcon from "../assets/img/search.png";
 import xIcon from "../assets/img/x.png";
 import menuIcon from "../assets/img/menu.png";
 
-const HeaderContainer = (props) => {
+const HeaderContainer = () => {
     const [isLoading, setIsLoading] = useState(true);
     const [genreList, setGenreList] = useState([]);
     const [gernesOpen, setGernesOpen] = useState(false);
@@ -39,7 +39,7 @@ const HeaderContainer = (props) => {
                 setGernesOpen(false);
             }
         }
-    }, [useMobile()]);
+    }, [ isMobile, mobileMenuOpen, gernesOpen]);
 
     const getGenreList = async () => {
         let genres = await moviesApi.genreList();

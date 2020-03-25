@@ -7,30 +7,28 @@ import {moviesApi} from "../api";
 import withModeChange from "../assets/withModeChange";
 
 const KeywordContainer = ({ match, history, keyword, keywordChange}) => {
-    const parsedId = parseInt(match.params.id);
+    const [parsedId,] = useState(parseInt(match.params.id));
     const [keywordName,setKeywordName] = useState(null);
-    const [blockingScroll, setBlockingScroll] = useState(false);
 
-    //여기서 스크롤 해도 List에서 setting으로 스크롤 내리는듯
+    /*useEffect 사용하는 props 변수들은 []안에 넣어서 명시해야지 종속성 에러 발생 x*/
     useEffect(()=>{
-        console.log(keyword,parsedId);
+        /*훅에 props에 들어가는 부분을 넣어도 종속성 경고 발생*/
+        if( isNaN(parsedId)){
+            return history.push("/");
+        }
+
         if(keyword !== parsedId){
             keywordChange(parsedId);
-            setBlockingScroll(true);
         }
-        getkeyword();
-    },[keywordName]);
+        const getKeyword = async() => {
+            let tmp = await moviesApi.getKeyword(parsedId);
+            tmp =  tmp.data.name;
+            setKeywordName(tmp);
+        };
+        getKeyword();
+    },[keywordName,parsedId,history,keyword, keywordChange]);
 
-    //useEffect에 아래 if문을 넣으면 history 및 parsedI가 없어서 종속성 문제 발생
-    if( isNaN(parsedId)){
-        return history.push("/");
-    }
 
-    const getkeyword = async() => {
-        let tmp = await moviesApi.getKeyword(parsedId);
-        tmp =  tmp.data.name;
-        setKeywordName(tmp);
-    };    
 
     return (
         <>
@@ -38,7 +36,6 @@ const KeywordContainer = ({ match, history, keyword, keywordChange}) => {
                 keyword : {keywordName === null ? <></> : keywordName}
             </div>
             <ListContainer
-                blockingScroll = {blockingScroll ? blockingScroll : undefined }
                 keywordId={parsedId}
             />
         </>

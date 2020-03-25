@@ -61,13 +61,13 @@ const ReviewManagementContainer = (props) => {
             props.history.push("/review"+props.match.params.id);
         }
         setIsLoading(false);
-    }, []);
+    }, [isModify,isWrite,props.match.params.id,userName, props.history]);
 
     const  onSubmit = e => {
         if(isWrite){
             e.preventDefault();
             setIsLoading(true);
-            let  formData = new FormData;
+            let  formData = new FormData();
             formData.append('title', title.replace(/<([^>]+)>/ig, ''));
             formData.append('content',content.replace(/<([^>]+)>/ig, ''));
             formData.append('status', 'publish');
@@ -100,7 +100,7 @@ const ReviewManagementContainer = (props) => {
         }else if(isModify){
             e.preventDefault();
             setIsLoading(true);
-            let  formData = new FormData;
+            let  formData = new FormData();
             formData.append('title', title.replace(/<([^>]+)>/ig, ''));
             formData.append('content',content.replace(/<([^>]+)>/ig, ''));
             formData.append('status', 'publish');

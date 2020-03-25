@@ -10,6 +10,7 @@ const DetailContainer = ({ match, history }) => {
     const [isLoading, setIsLoading] = useState(true);
     const [keywordList, setkeywordList] = useState(null);
 
+    /*유튜브 iframe 의 쿠기 값이 크롬 권장에 따라 SameSite = Lax 일텐데 그것을 SameSite = none; Secure 로 해야됨 */
     useEffect(() => {   
         if( isNaN(parsedId)){
             return history.push("/");
@@ -27,7 +28,7 @@ const DetailContainer = ({ match, history }) => {
             }
         };
         handleContent();
-    }, []);
+    }, [history,parsedId]);
 
     return (
         <Detail

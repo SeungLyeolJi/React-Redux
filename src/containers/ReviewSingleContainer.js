@@ -16,17 +16,17 @@ const ReviewSingleContainer = (props) => {
     useTokenVelidate(props);
 
     useEffect(() => {
+        /*해당 포스트에 대한 정보를 얻음*/
         axios.get(`${clientCofnig.siteUrl}/wp-json/wp/v2/posts/${props.match.params.id}`).then(
             res => {
                 // console.log(res);
                 setData(res.data);
+                // console.log(res);
+                /*가져온 포스트의 아이디 값(author)로 글쓴이 이름을 찾음*/
                 axios.get(`${clientCofnig.siteUrl}/wp-json/wp/v2/users/${res.data.author}`).then(
                     res => {
-                        // console.log("유저 데이터");
                         setAuthor(res.data.name);
                         setIsLoading(false);
-                        // console.log(userName);
-                        // console.log(res.data.slug);
                         if (userName === res.data.slug) {
                             setIsAuthor(true);
                         } else {
@@ -44,7 +44,7 @@ const ReviewSingleContainer = (props) => {
             console.log(err);
             setIsLoading(false);
         });
-    }, []);
+    }, [props.match.params.id, userName]);
 
     const onRemove = () => {
         axios.delete(`${clientCofnig.siteUrl}/wp-json/wp/v2/posts/${data.id}`,{

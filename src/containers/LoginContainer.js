@@ -27,7 +27,7 @@ const LoginContainer = (props) => {
         if (localStorage.getItem('token') != null || sessionStorage.getItem('token')) {
             props.history.push('/');
         }
-    }, []);
+    }, [props.history]);
     //Line 30:8:  React Hook useEffect has a missing dependency: 'props.history'. Either include it or remove the dependency array
 
     //처음 로그인시 로딩창을 보여줌 => 로딩 true

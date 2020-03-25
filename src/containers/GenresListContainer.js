@@ -5,29 +5,31 @@ import {bindActionCreators} from 'redux';
 import {isScrollChange, modeChange, genreChange} from "../modules/list";
 import {moviesApi} from "../api";
 import withModeChange from "../assets/withModeChange";
+import Loading from "../components/Loading";
 
 const GenreListContainer = ({match, history, genre, genreChange}) => {
     const parsedId = parseInt(match.params.id);
     const [genreName, setGenreName] = useState(null);
-    const [blockingScroll, setBlockingScroll] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
 
-    //여기서 스크롤 해도 List에서 setting으로 스크롤 내리는듯
+    /*useEffect 사용하는 props 변수들은 []안에 넣어서 명시해야지 종속성 에러 발생 x*/
     useEffect(() => {
         let getGenre = async () => {
             let genres = await moviesApi.genreList();
             genres = genres.data.genres;
             let tmp = genres.filter(item => item.id === parsedId)[0].name;
             setGenreName(tmp);
+            setIsLoading(false);
         };
         getGenre();
         if (genre !== parsedId) {
             genreChange(parsedId);
-            window.scroll(0,0);
-            setBlockingScroll(true);
+            setIsLoading(true);
+            window.scrollTo(0,0);
         }
-    }, [parsedId]);
+    }, [parsedId, genre, genreChange]);
 
-    //useEffect에 아래 if문을 넣으면 history 및 parsedI가 없어서 종속성 문제 발생
+    /*훅에 props에 들어가는 부분을 넣어도 종속성 경고 발생*/
     if (isNaN(parsedId)) {
         return history.push("/");
     }
@@ -37,10 +39,11 @@ const GenreListContainer = ({match, history, genre, genreChange}) => {
             <div className="descriptionLogo">
                 Genre : {genreName === null ? <></> : genreName}
             </div>
-            <ListContainer
-                blockingScroll = {blockingScroll ? blockingScroll : undefined }
+            {isLoading ? <Loading/> :
+                <ListContainer
                 genreId={parsedId}
-            />
+                />
+            }
         </>
     );
 };
