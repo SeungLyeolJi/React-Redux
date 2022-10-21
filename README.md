@@ -1,5 +1,8 @@
 ## React를 이용한 영화 평론 사이트!
-The Movie Database Api를 사용해서 영화 정보를 가져온 후 이를 무한 로딩 페이지로 뿌려줍니다!
+<br/>
+The Movie Database Api를 사용해서 영화 정보를 가져온 후 이를 무한 로딩 페이지로 뿌려줍니다! <br/>
+[웹 구경하기](https://cocky-montalcini-1434be.netlify.com) <br/>
+<br/>
 <hr/>
 기능 :
 상영작, 개봉예정작, 명작, 장르별, 키워드별, 검색
@@ -14,8 +17,6 @@ The Movie Database Api를 사용해서 영화 정보를 가져온 후 이를 무
     * ###### [useMemo, useCallBack 을 사용해야할 때](https://rinae.dev/posts/review-when-to-usememo-and-usecallback)
 
 PPT 폴더는 js 및 React의 기본 문법을 정리한 것입니다.
-
-[웹 구경하기](https://cocky-montalcini-1434be.netlify.com)
 
 코드 실행 방법 : 
 1. Node.js 및 git 다운로드
