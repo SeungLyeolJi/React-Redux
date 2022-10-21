@@ -1,6 +1,6 @@
-해당 프로젝트
---------
-#### The Movie Database Api를 사용한 웹입니다.
+## React를 이용한 영화 평론 사이트!
+The Movie Database Api를 사용해서 영화 정보를 가져온 후 이를 무한 로딩 페이지로 뿌려줍니다!
+<hr/>
 기능 :
 상영작, 개봉예정작, 명작, 장르별, 키워드별, 검색
 
@@ -28,14 +28,3 @@ PPT 폴더는 js 및 React의 기본 문법을 정리한 것입니다.
 8. yarn 
 9. yarn start
 10. 서버 종료를 원할 시 ctrl + c
-
-+ 에러
-    - There might be a problem with the project dependency tree. It is likely not a bug in Create React App, but something you need to fix locally.
-        * 해결법은 C:\Users\doje1( 사용중인 사용자? )에 node module을 삭제하면 됨 
-        
-+ 추후 변경사항
-    - useMemo, useCallBack으로 최적화 해보기.   
-    - ~~스크롤 이벤트를 history라는 파일을 만들어서 제어해보기 (참고 코드 보면서) & withModeChange 파일도 없애기~~
-        * history 폴더를 만들어서 해봤는데 큰 merit 없음, 지금과 같이 각 container 에서 redux를 불러야함
-        * 참고 코드 와의 차별점으로 withModeChange 놔두는게 좋다고 판단함   
-    - ListContainer 에 코드를 줄이는 방향으로 수정해보기  
