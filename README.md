@@ -1,7 +1,7 @@
 ## React를 이용한 영화 평론 사이트!
 <br/>
 The Movie Database Api를 사용해서 영화 정보를 가져온 후 이를 무한 로딩 페이지로 뿌려줍니다! <br/>
-[웹 구경하기](https://cocky-montalcini-1434be.netlify.com) <br/>
+[웹 구경하기](https://cocky-montalcini-1434be.netlify.app/) <br/>
 <br/>
 <hr/>
 기능 :
